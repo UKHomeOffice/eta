@@ -1,0 +1,13 @@
+{
+  "appName": "ETA",
+  "theme": "govUK",
+  "routes": [
+    "./apps/eta"
+  ],
+  "views": ["./apps/eta/views"],
+  "session": {
+    "name": "eta.hof.sid",
+    "ttl": 3600
+  },
+  "getAccessibility": true
+}

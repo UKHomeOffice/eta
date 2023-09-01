@@ -1,0 +1,12 @@
+{
+  "has-application-been-submitted": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  }
+}
