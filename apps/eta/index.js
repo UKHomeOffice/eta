@@ -28,11 +28,13 @@ module.exports = {
     '/what-is-your-question-about-eta': {
 
     },
-
     '/confirm': {
       behaviours: [summary],
-
-      next: '/confirm'
+      next: '/confirmation'
+    },
+    '/confirmation': {
+      template: 'confirmation',
+      backLink: false
     }
   }
 };
