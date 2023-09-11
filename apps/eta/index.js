@@ -31,11 +31,7 @@ module.exports = {
 
     '/confirm': {
       behaviours: [summary],
-      sections: {
-        section1: [
-          'has-application-been-submitted'
-        ]
-      },
+
       next: '/confirm'
     }
   }

@@ -3,17 +3,7 @@
     "header": "Is your question about an ETA application that has been submitted?"
   },
   "confirm": {
-    "sections":{
-      "section1":{
-        "header": " "
-      }
-    },
     "header": "Check your answers",
-    "footer": "Check the information you have entered is correct and send your form.",
-    "fields" : {
-      "has-application-been-submitted": {
-        "label": "Is your question about an ETA application that has been submitted?"
-      }
-    }
+    "warning" :"Check the information you have entered is correct."
   }
 }
