@@ -1,0 +1,9 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#rows}}
+      {{> partials-summary-table}}
+    {{/rows}}
+    <p>{{warning}}</p>
+    {{#input-submit}}confirm{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

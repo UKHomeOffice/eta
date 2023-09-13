@@ -1,0 +1,13 @@
+{
+  "has-application-been-submitted": {
+    "label": "Is your question about an ETA application that has been submitted?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  }
+}
