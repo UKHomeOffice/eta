@@ -2,8 +2,59 @@
   "has-application-been-submitted": {
     "header": "Is your question about an ETA application that has been submitted?"
   },
+  "application-submitted": {
+    "header": "Is your question about an ETA application that has been submitted?"
+  },
+  "question-about-submitted": {
+    "header": "What is your question about?"
+  },
   "confirm": {
+    "sections":{
+      "application-details":{
+        "header": " "
+      }
+    },
     "header": "Check your answers",
-    "warning" :"Check the information you have entered is correct."
+    "footer": "Check the information you have entered is correct and send your form.",
+    "complete-again": "<a class=\"govuk-link\" href='/#'>Complete the form again</a>",
+    "paragraph-1": "For example:",
+    "fields" : {
+      "application-submitted": {
+        "label": "Have you submitted an ETA application?"
+      },
+      "whatIsYourQuestionAbout": {
+        "label": "What is your question about?"
+      },
+      "whatIsYourQuestionAboutNotSubmitted": {
+        "label": "What is your question about?"
+      },
+      "applicationMethod": {
+        "label": "How did you apply?"
+      },
+      "applyingMethod": {
+        "label": "How are you applying for your ETA?"
+      },
+      "questionOnlineOption": {
+        "label": "Which part of the application is your question about?"
+      },
+      "questionAppOption": {
+        "label": "Which part of the application is your question about?"
+      },
+      "yourQuestion": {
+        "label": "Your question"
+      },
+      "name": {
+        "label": "Full name of the person who applied"
+      },
+      "nameNotApplied": {
+        "label": "Your name"
+      },
+      "email": {
+        "label": "Your email address"
+      },
+      "etaReferenceNumber": {
+        "label": "ETA reference number"
+      }
+    }
   }
 }

@@ -1,0 +1,45 @@
+{
+  "name":{
+    "required": "Enter the full name of the person that applied",
+    "maxlength": "Full name must be 255 characters or less",
+    "notUrl": "Enter a valid name"
+  },
+  "nameNotApplied":{
+    "required": "Enter your full name",
+    "maxlength": "Full name must be 255 characters or less",
+    "notUrl": "Enter a valid name"
+  },
+  "application-submitted": {
+    "default": "Select yes if your question is about an ETA that has been submitted"
+  },
+  "whatIsYourQuestionAbout": {
+    "default": "Select what your question is about"
+  },
+  "whatIsYourQuestionAboutNotSubmitted": {
+    "default": "Select what your question is about"
+  },
+  "applicationMethod": {
+    "default": "Select how you applied for your ETA"
+  },
+  "applyingMethod": {
+    "default": "Select how you are applying for your ETA"
+  },
+  "yourQuestion": {
+    "default": "Enter your question",
+    "maxlength": "Question must be 2,000 characters or less"
+  },
+  "email": {
+    "required": "Enter your email address",
+    "maxlength": "Email address must be 255 characters or less",
+    "email": "Enter a real email address"
+  },
+  "etaReferenceNumber": {
+    "regex": "Enter an ETA reference number in the correct format, for example 2021-1111-1111-1111"
+  },
+  "questionAppOption": {
+    "default": "Select which part of the application your question is about"
+  },
+  "questionOnlineOption": {
+    "default": "Select which part of the application your question is about"
+  }
+}

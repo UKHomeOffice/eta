@@ -1,13 +1,135 @@
 {
-  "has-application-been-submitted": {
+  "name": {
+    "label": "Full name of the person who applied"
+  },
+  "nameNotApplied": {
+    "label": "Your full name"
+  },
+  "email": {
+    "label": "Email address",
+    "hint": "This is where we will send our reply"
+  },
+  "application-submitted": {
     "label": "Is your question about an ETA application that has been submitted?",
     "options": {
-      "yes": {
+      "Yes": {
         "label": "Yes"
       },
-      "no": {
+      "No": {
         "label": "No"
       }
     }
+  },
+  "whatIsYourQuestionAbout": {
+    "label": "What is your question about?",
+    "options": {
+      "I have not received a confirmation email": {
+        "label": "I have not received a confirmation email",
+        "hint": "Use this option if you did not get a confirmation email within 2 hours of applying"
+      },
+      "I have not received a decision": {
+        "label": "I have not received a decision",
+        "hint": "Use this option if you have not received a decision email within 3 working days of applying"
+      },
+      "Question about the decision on my ETA": {
+        "label": "Question about the decision on my ETA"
+      },
+      "Something else": {
+        "label": "Something else"
+      }
+    }
+  },
+  "whatIsYourQuestionAboutNotSubmitted": {
+    "label": "What is your question about?",
+    "options": {
+      "Do I need an ETA?": {
+        "label": "Do I need an ETA?"
+      },
+      "Applying for an ETA": {
+        "label": "Applying for an ETA"
+      },
+      "Something else": {
+        "label": "Something else"
+      }
+    }
+  },
+  "applicationMethod": {
+    "label": "How did you apply for your ETA?",
+    "options": {
+      "UK ETA app on Android": {
+        "label": "UK ETA app on Android"
+      },
+      "UK ETA app on iPhone": {
+        "label": "UK ETA app on iPhone"
+      },
+      "Online": {
+        "label": "Online"
+      }
+    }
+  },
+  "applyingMethod": {
+    "label": "How are you applying for your ETA?",
+    "options": {
+      "UK ETA app on Android": {
+        "label": "UK ETA app on Android"
+      },
+      "UK ETA app on iPhone": {
+        "label": "UK ETA app on iPhone"
+      },
+      "Online": {
+        "label": "Online"
+      }
+    }
+  },
+  "yourQuestion": {
+    "hint": "Include what you were trying to do and any error messages",
+    "label": "Your question"
+  },
+  "questionAppOption": {
+    "label": "Which part of the ETA application is your question about?",
+    "options": {
+      "Confirming my email address with a security code": {
+        "label": "Confirming my email address with a security code"
+      },
+      "Taking a photo of myself or my passport": {
+        "label": "Taking a photo of myself or my passport"
+      },
+      "Scanning my face": {
+        "label": "Scanning my face"
+      },
+      "Scanning the chip in my passport": {
+        "label": "Scanning the chip in my passport"
+      },
+      "Paying for my application": {
+        "label": "Paying for my application"
+      },
+      "Something else": {
+        "label": "Something else"
+      }
+    }
+  },
+  "questionOnlineOption": {
+    "label": "Which part of the ETA application is your question about?",
+    "options": {
+      "Confirming my email address with a security code": {
+        "label": "Confirming my email address with a security code"
+      },
+      "Taking a photo of myself or my passport": {
+        "label": "Taking a photo of myself or my passport"
+      },
+      "Scanning my face": {
+        "label": "Scanning my face"
+      },
+      "Paying for my application": {
+        "label": "Paying for my application"
+      },
+      "Something else": {
+        "label": "Something else"
+      }
+    }
+  },
+  "etaReferenceNumber": {
+    "label": "ETA reference number (optional)",
+    "hint": "For example, 2021-1111-1111-1111. We need your ETA reference number to give specific information about your ETA."
   }
 }

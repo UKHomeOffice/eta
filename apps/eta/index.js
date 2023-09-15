@@ -10,27 +10,91 @@ module.exports = {
     '/cookies': 'cookies'
   },
   steps: {
-    '/has-application-been-submitted': {
-      fields: ['has-application-been-submitted'],
+    '/application-submitted': {
+      fields: ['application-submitted'],
       forks: [{
-        target: '/what-is-your-question-about-submitted-eta',
+        target: '/question-about-submitted',
         condition: {
-          field: 'has-application-been-submitted',
-          value: 'yes'
+          field: 'application-submitted',
+          value: 'Yes'
         }
       }],
-      next: '/confirm',
-      backLink: false
+      next: '/question-about-not-submitted'
     },
-    '/what-is-your-question-about-submitted-eta': {
-
+    // Needs conditional logic for this step to decide which screen to go next dependent on user selection
+    '/question-about-submitted': {
+      fields: ['whatIsYourQuestionAbout'],
+      forks: [{
+        target: '/details-submitted',
+        condition: {
+          field: 'whatIsYourQuestionAbout',
+          value: 'Question about the decision on my ETA'
+        }
+      }],
+      next: '/how-applied'
     },
-    '/what-is-your-question-about-eta': {
-
+    '/how-applied': {
+      fields: ['applicationMethod'],
+      next: '/details-submitted'
+    },
+    '/details-submitted': {
+      fields: ['yourQuestion', 'email', 'name', 'etaReferenceNumber'],
+      next: '/confirm'
+    },
+    '/question-about-not-submitted': {
+      fields: ['whatIsYourQuestionAboutNotSubmitted'],
+      forks: [{
+        target: '/how-applying',
+        condition: {
+          field: 'whatIsYourQuestionAboutNotSubmitted',
+          value: 'Applying for an ETA'
+        }
+      }],
+      next: '/details-not-submitted'
+    },
+    '/how-applying': {
+      fields: ['applyingMethod'],
+      forks: [{
+        target: '/question-online',
+        condition: {
+          field: 'applyingMethod',
+          value: 'Online'
+        }
+      }],
+      next: '/question-app'
+    },
+    '/question-online': {
+      fields: ['questionOnlineOption'],
+      next: '/details-not-submitted'
+    },
+    '/question-app': {
+      fields: ['questionAppOption'],
+      next: '/details-not-submitted'
+    },
+    '/details-not-submitted': {
+      fields: ['yourQuestion', 'nameNotApplied', 'email'],
+      next: '/confirm'
     },
     '/confirm': {
       behaviours: [summary],
-      next: '/confirmation'
+      sections: {
+        'application-details': [
+          'application-submitted',
+          'whatIsYourQuestionAbout',
+          'whatIsYourQuestionAboutNotSubmitted',
+          'applicationMethod',
+          'applyingMethod',
+          // Need to check how to apply a conditional for the following 2 fields (because there's a fork for the flow)
+          'questionOnlineOption',
+          'questionAppOption',
+          'yourQuestion',
+          'name',
+          'nameNotApplied',
+          'email',
+          'etaReferenceNumber'
+        ]
+      },
+      next: '/confirm'
     },
     '/confirmation': {
       template: 'confirmation',
