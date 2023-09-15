@@ -1,6 +1,8 @@
 'use strict';
 
+const config = require('../../config');
 const summary = require('hof').components.summary;
+const caseworkerEmailer = require('./behaviours/caseworker-email')(config.email);
 
 module.exports = {
   name: 'eta',
@@ -10,17 +12,21 @@ module.exports = {
     '/cookies': 'cookies'
   },
   steps: {
-    '/has-application-been-submitted': {
-      fields: ['has-application-been-submitted'],
+    '/application-submitted': {
+      fields: ['application-submitted'],
       forks: [{
         target: '/what-is-your-question-about-submitted-eta',
         condition: {
-          field: 'has-application-been-submitted',
+          field: 'application-submitted',
           value: 'yes'
         }
       }],
-      next: '/confirm',
+      next: '/details-submitted',
       backLink: false
+    },
+    '/details-submitted': {
+      fields: ['yourQuestion', 'email', 'name', 'etaReferenceNumber'],
+      next: '/confirm'
     },
     '/what-is-your-question-about-submitted-eta': {
 
@@ -29,7 +35,7 @@ module.exports = {
 
     },
     '/confirm': {
-      behaviours: [summary],
+      behaviours: [summary, caseworkerEmailer],
       next: '/confirmation'
     },
     '/confirmation': {

@@ -1,5 +1,9 @@
 {
-  "has-application-been-submitted": {
+  "email": {
+    "subject": "Applying for ETA"
+  },
+
+  "application-submitted": {
     "header": "Is your question about an ETA application that has been submitted?"
   },
   "confirm": {

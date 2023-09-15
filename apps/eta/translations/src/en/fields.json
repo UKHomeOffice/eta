@@ -1,5 +1,5 @@
 {
-  "has-application-been-submitted": {
+  "application-submitted": {
     "label": "Is your question about an ETA application that has been submitted?",
     "options": {
       "yes": {
@@ -9,5 +9,57 @@
         "label": "No"
       }
     }
+  },
+  "name": {
+    "label": "Full name of the person who applied"
+  },
+  "email": {
+    "label": "Email address",
+    "hint": "This is where we will send our reply"
+  },
+  "whatIsYourQuestionAbout": {
+    "label": "What is your question about?",
+    "options": {
+      "I have not received a confirmation email": {
+        "label": "I have not received a confirmation email",
+        "hint": "Use this option if you did not get a confirmation email within 2 hours of applying"
+      },
+      "I have not received a decision": {
+        "label": "I have not received a decision",
+        "hint": "Use this option if you have not received a decision email within 3 working days of applying"
+      },
+      "Question about the decision on my ETA": {
+        "label": "Question about the decision on my ETA"
+      },
+      "Something else": {
+        "label": "Something else"
+      }
+    }
+  },
+  "applicationMethod": {
+    "label": "How did you apply for your ETA?",
+    "options": {
+      "UK ETA app on Android": {
+        "label": "UK ETA app on Android"
+      },
+      "UK ETA app on iPhone": {
+        "label": "UK ETA app on iPhone"
+      },
+      "Online": {
+        "label": "Online"
+      }
+    }
+  },
+  "yourQuestion": {
+    "label": "Your question"
+  },
+  "etaReferenceNumber": {
+    "label": "ETA reference number (optional)",
+    "hint": "For example, 2021-1111-1111-1111. We need your ETA reference number to give specific information about your ETA."
+  },
+  "notify": {
+    "name": "Name:",
+    "email": "Email Address:",
+    "etaReferenceNumber": "ETA refernce number:"
   }
 }
