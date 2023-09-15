@@ -13,7 +13,7 @@ environment:
   IMAGE_URL: quay.io/ukhomeofficedigital
   IMAGE_REPO: eta
   GIT_REPO: UKHomeOffice/eta
-  HOF_CONFIG: hof-services-config/ETA
+  HOF_CONFIG: hof-services-config/Electronic_Travel_Authorisation
   NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
