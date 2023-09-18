@@ -20,13 +20,13 @@ const getDataRows = (model, translate) => {
       ]
     },
     model['application-submitted'] && {
-      title: translate('fields.whatIsYourQuestionAbout.label'),
+      questionTitle: translate('fields.whatIsYourQuestionAbout.label'),
       table: [
         {
-          value: model['application-submitted'] == 'yes'? '* Application submitted' : '* Application not submitted',
+          value: model['application-submitted'] == 'yes'? 'Application submitted' : 'Application not submitted',
         },
         {
-          value: model['etaReferenceNumber'] == ''? '* None provided' : '*' +  model['etaReferenceNumber'],
+          value: model['etaReferenceNumber'] == ''? 'ETA reference number: not given' : 'ETA reference number: ' +  model['etaReferenceNumber'],
         },
       ]
     }
