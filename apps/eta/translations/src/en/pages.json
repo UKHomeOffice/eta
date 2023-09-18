@@ -6,6 +6,9 @@
   "application-submitted": {
     "header": "Is your question about an ETA application that has been submitted?"
   },
+   "question-about-submitted": {
+     "header": "What is your question about?"
+   },
   "confirm": {
     "header": "Check your answers",
     "warning" :"Check the information you have entered is correct."

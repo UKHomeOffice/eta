@@ -3,15 +3,66 @@
 module.exports = {
   'application-submitted': {
     mixin: 'radio-group',
-    options: ['yes', 'no'],
+    options: ['Yes', 'No'],
     validate: 'required',
     legend: {
       className: 'visuallyhidden'
     }
   },
+  whatIsYourQuestionAbout: {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'I have not received a confirmation email',
+      'I have not received a decision',
+      'Question about the decision on my ETA',
+      'Something else'
+    ]
+  },
+  whatIsYourQuestionAboutNotSubmitted: {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'Do I need an ETA?',
+      'Applying for an ETA',
+      'Something else'
+    ]
+  },
+  applicationMethod: {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'UK ETA app on Android',
+      'UK ETA app on iPhone',
+      'Online',
+    ]
+  },
+  applyingMethod: {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'UK ETA app on Android',
+      'UK ETA app on iPhone',
+      'Online',
+    ]
+  },
   yourQuestion: {
+    isPageHeading: false,
     mixin: 'textarea',
-    labelClassName: 'visuallyhidden',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: 2000 }],
@@ -24,12 +75,42 @@ module.exports = {
   name: {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 255 }],
   },
+  nameNotApplied: {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 255 }],
+  },
   email: {
-    isPageHeading: true,
-    validate: ['required', 'email', { type: 'maxlength', arguments: 255 }]
+    validate: ['required', 'email', { type: 'maxlength', arguments: 255}]
   },
   etaReferenceNumber: {
-    isPageHeading: true,
-    validate: ['required', { type: 'maxlength', arguments: 255 }]
+    validate: [{ type: 'regex', arguments: /^$|((^[0-9]{4}(-[0-9]{4}){3}$))/ }],
+  },
+  questionAppOption: {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'Confirming my email address with a security code',
+      'Taking a photo of myself or my passport',
+      'Scanning my face',
+      'Scanning the chip in my passport',
+      'Paying for my application',
+      'Something else'
+    ]
+  },
+  questionOnlineOption: {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'Confirming my email address with a security code',
+      'Taking a photo of myself or my passport',
+      'Scanning my face',
+      'Paying for my application',
+      'Something else'
+    ]
   }
 };
