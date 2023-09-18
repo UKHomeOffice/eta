@@ -21,7 +21,6 @@ module.exports = {
       }],
       next: '/question-about-not-submitted'
     },
-    // Needs conditional logic for this step to decide which screen to go next dependent on user selection
     '/question-about-submitted': {
       fields: ['whatIsYourQuestionAbout'],
       forks: [{
@@ -72,28 +71,13 @@ module.exports = {
       next: '/details-not-submitted'
     },
     '/details-not-submitted': {
-      fields: ['yourQuestion', 'nameNotApplied', 'email'],
+      fields: ['your-question-not-submitted', 'nameNotApplied', 'email-not-submitted'],
+      template: 'your-question',
       next: '/confirm'
     },
     '/confirm': {
       behaviours: [summary],
-      sections: {
-        'application-details': [
-          'application-submitted',
-          'whatIsYourQuestionAbout',
-          'whatIsYourQuestionAboutNotSubmitted',
-          'applicationMethod',
-          'applyingMethod',
-          // Need to check how to apply a conditional for the following 2 fields (because there's a fork for the flow)
-          'questionOnlineOption',
-          'questionAppOption',
-          'yourQuestion',
-          'name',
-          'nameNotApplied',
-          'email',
-          'etaReferenceNumber'
-        ]
-      },
+      sections: require('./sections/summary-data-sections'),
       next: '/confirm'
     },
     '/confirmation': {

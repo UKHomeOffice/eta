@@ -70,15 +70,33 @@ module.exports = {
           attribute: 'rows',
           value: 4
         }],
-        className: ['govuk-input', 'govuk-!-width-two-thirds']
+        className: ['govuk-input']
+      },
+      'your-question-not-submitted': {
+        isPageHeading: false,
+        labelClassName: 'visuallyhidden',
+        mixin: 'textarea',
+        'ignore-defaults': true,
+        formatter: ['trim', 'hyphens'],
+        validate: ['required', { type: 'maxlength', arguments: 2000 }],
+        attributes: [{
+          attribute: 'rows',
+          value: 4
+        }],
+        className: ['govuk-input']
       },
       name: {
         validate: ['required', 'notUrl', { type: 'maxlength', arguments: 255 }],
       },
       nameNotApplied: {
+        labelClassName: 'visuallyhidden',
         validate: ['required', 'notUrl', { type: 'maxlength', arguments: 255 }],
       },
       email: {
+        validate: ['required', 'email', { type: 'maxlength', arguments: 255}]
+      },
+      'email-not-submitted': {
+        labelClassName: 'visuallyhidden',
         validate: ['required', 'email', { type: 'maxlength', arguments: 255}]
       },
       etaReferenceNumber: {

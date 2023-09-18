@@ -9,6 +9,10 @@
     "label": "Email address",
     "hint": "This is where we will send our reply"
   },
+  "email-not-submitted": {
+    "label": "Email address",
+    "hint": "This is where we will send our reply"
+  },
   "application-submitted": {
     "label": "Is your question about an ETA application that has been submitted?",
     "options": {
@@ -82,6 +86,10 @@
     }
   },
   "yourQuestion": {
+    "hint": "Include what you were trying to do and any error messages",
+    "label": "Your question"
+  },
+  "your-question-not-submitted": {
     "hint": "Include what you were trying to do and any error messages",
     "label": "Your question"
   },

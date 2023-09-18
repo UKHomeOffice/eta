@@ -28,7 +28,16 @@
     "default": "Enter your question",
     "maxlength": "Question must be 2,000 characters or less"
   },
+  "your-question-not-submitted": {
+    "default": "Enter your question",
+    "maxlength": "Question must be 2,000 characters or less"
+  },
   "email": {
+    "required": "Enter your email address",
+    "maxlength": "Email address must be 255 characters or less",
+    "email": "Enter a real email address"
+  },
+  "email-not-submitted": {
     "required": "Enter your email address",
     "maxlength": "Email address must be 255 characters or less",
     "email": "Enter a real email address"
