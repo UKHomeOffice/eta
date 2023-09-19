@@ -1,0 +1,18 @@
+{{<partials-page}}
+  {{$page-content}}
+  <strong>{{#t}}fields.yourQuestion.label{{/t}}</strong>
+  {{#renderField}}yourQuestion{{/renderField}}
+
+  <strong>{{#t}}fields.email.label{{/t}}</strong>
+  {{#input-text}}email{{/input-text}}
+
+  <strong>{{#t}}fields.name.label{{/t}}</strong>
+  {{#input-text}}name{{/input-text}}
+
+  <strong>{{#t}}fields.etaReferenceNumber.label{{/t}}</strong>
+  {{#input-text}}etaReferenceNumber{{/input-text}}
+
+  {{#input-submit}}continue{{/input-submit}}
+
+  {{/page-content}}
+{{/partials-page}}

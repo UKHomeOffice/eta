@@ -1,6 +1,7 @@
 'use strict';
 
 const summary = require('hof').components.summary;
+const conditionalValidate = require('./behaviours/conditional-validate')
 
 module.exports = {
   name: 'eta',
@@ -30,14 +31,18 @@ module.exports = {
           value: 'Question about the decision on my ETA'
         }
       }],
+      continueOnEdit: true,
       next: '/how-applied'
     },
     '/how-applied': {
       fields: ['applicationMethod'],
-      next: '/details-submitted'
+      next: '/details-submitted',
+      continueOnEdit: true
     },
     '/details-submitted': {
       fields: ['yourQuestion', 'email', 'name', 'etaReferenceNumber'],
+      template: 'your-question-submitted',
+      behaviours: [conditionalValidate],
       next: '/confirm'
     },
     '/question-about-not-submitted': {
@@ -72,7 +77,7 @@ module.exports = {
     },
     '/details-not-submitted': {
       fields: ['your-question-not-submitted', 'nameNotApplied', 'email-not-submitted'],
-      template: 'your-question',
+      template: 'your-question-not-submitted',
       next: '/confirm'
     },
     '/confirm': {

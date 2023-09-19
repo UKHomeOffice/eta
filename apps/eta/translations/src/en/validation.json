@@ -43,7 +43,8 @@
     "email": "Enter a real email address"
   },
   "etaReferenceNumber": {
-    "regex": "Enter an ETA reference number in the correct format, for example 2021-1111-1111-1111"
+    "regex": "Enter an ETA reference number in the correct format, for example 2021-1111-1111-1111",
+    "required": "ETA reference number is required"
   },
   "questionAppOption": {
     "default": "Select which part of the application your question is about"

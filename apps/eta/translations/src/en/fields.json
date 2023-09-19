@@ -137,7 +137,7 @@
     }
   },
   "etaReferenceNumber": {
-    "label": "ETA reference number (optional)",
+    "label": "ETA reference number {{#optional}} (optional) {{/optional}}",
     "hint": "For example, 2021-1111-1111-1111. We need your ETA reference number to give specific information about your ETA."
   }
 }
