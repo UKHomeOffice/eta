@@ -3,6 +3,8 @@
 const config = require('../../config');
 const summary = require('hof').components.summary;
 const caseworkerEmailer = require('./behaviours/caseworker-email')(config.email);
+const customerEmailer = require('./behaviours/customer-email')(config.email);
+const conditionalValidate = require('./behaviours/conditional-validate')
 
 module.exports = {
   name: 'eta',
@@ -23,7 +25,6 @@ module.exports = {
       }],
       next: '/question-about-not-submitted'
     },
-    // Needs conditional logic for this step to decide which screen to go next dependent on user selection
     '/question-about-submitted': {
       fields: ['whatIsYourQuestionAbout'],
       forks: [{
@@ -33,14 +34,18 @@ module.exports = {
           value: 'Question about the decision on my ETA'
         }
       }],
+      continueOnEdit: true,
       next: '/how-applied'
     },
     '/how-applied': {
       fields: ['applicationMethod'],
-      next: '/details-submitted'
+      next: '/details-submitted',
+      continueOnEdit: true
     },
     '/details-submitted': {
       fields: ['yourQuestion', 'email', 'name', 'etaReferenceNumber'],
+      template: 'your-question-submitted',
+      behaviours: [conditionalValidate],
       next: '/confirm'
     },
     '/question-about-not-submitted': {
@@ -74,11 +79,13 @@ module.exports = {
       next: '/details-not-submitted'
     },
     '/details-not-submitted': {
-      fields: ['yourQuestion', 'nameNotApplied', 'email'],
+      fields: ['your-question-not-submitted', 'nameNotApplied', 'email-not-submitted'],
+      template: 'your-question-not-submitted',
       next: '/confirm'
     },
     '/confirm': {
-      behaviours: [summary, caseworkerEmailer],
+      behaviours: [summary, caseworkerEmailer, customerEmailer],
+      sections: require('./sections/summary-data-sections'),
       next: '/confirmation'
     },
     '/confirmation': {

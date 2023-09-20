@@ -3,31 +3,40 @@
 const hof = require('hof');
 const Notify = hof.components.notify;
 const path = require('path');
-const moment = require('moment');
 
 // eslint-disable-next-line complexity
-const getDataRows = (model, translate) => {
+const getDataRows = (model) => {
   return [
     {
-      title: 'Contact details',
       table: [
         model.name && {
-          name: model['name'] + "\n"
+          name: model['name']
         },
         model.email && {
-          email: model['email'] + "\n"
-        }
+          email: model['email']
+        },
+        model.yourQuestion && {
+          yourQuestion: model['yourQuestion']
+        },
       ]
     },
     model['application-submitted'] && {
-      questionTitle: translate('fields.whatIsYourQuestionAbout.label'),
       table: [
-        {
-          value: model['application-submitted'] == 'yes'? 'Application submitted' : 'Application not submitted',
-        },
         {
           value: model['etaReferenceNumber'] == ''? 'ETA reference number: not given' : 'ETA reference number: ' +  model['etaReferenceNumber'],
         },
+        {
+          value: model['application-submitted'] == 'Yes'? 'Application submitted' : 'Application not submitted',
+        },
+        {
+          value: model['whatIsYourQuestionAbout']
+        },
+        {
+          value: model['applicationMethod']
+        },
+        {
+          value: model['questionOnlineOption']
+        }
       ]
     }
   ].filter(Boolean);

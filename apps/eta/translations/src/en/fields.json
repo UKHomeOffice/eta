@@ -9,6 +9,10 @@
     "label": "Email address",
     "hint": "This is where we will send our reply"
   },
+  "email-not-submitted": {
+    "label": "Email address",
+    "hint": "This is where we will send our reply"
+  },
   "application-submitted": {
     "label": "Is your question about an ETA application that has been submitted?",
     "options": {
@@ -85,6 +89,10 @@
     "hint": "Include what you were trying to do and any error messages",
     "label": "Your question"
   },
+  "your-question-not-submitted": {
+    "hint": "Include what you were trying to do and any error messages",
+    "label": "Your question"
+  },
   "questionAppOption": {
     "label": "Which part of the ETA application is your question about?",
     "options": {
@@ -129,7 +137,7 @@
     }
   },
   "etaReferenceNumber": {
-    "label": "ETA reference number (optional)",
+    "label": "ETA reference number {{#optional}} (optional) {{/optional}}",
     "hint": "For example, 2021-1111-1111-1111. We need your ETA reference number to give specific information about your ETA."
   }
 }
