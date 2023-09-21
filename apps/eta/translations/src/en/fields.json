@@ -2,7 +2,7 @@
   "name": {
     "label": "Full name of the person who applied"
   },
-  "nameNotApplied": {
+  "name-not-applied": {
     "label": "Your full name"
   },
   "email": {
@@ -24,7 +24,7 @@
       }
     }
   },
-  "whatIsYourQuestionAbout": {
+  "what-is-your-question-about": {
     "label": "What is your question about?",
     "options": {
       "I have not received a confirmation email": {
@@ -43,7 +43,7 @@
       }
     }
   },
-  "whatIsYourQuestionAboutNotSubmitted": {
+  "what-is-your-question-about-not-submitted": {
     "label": "What is your question about?",
     "options": {
       "Do I need an ETA?": {
@@ -57,7 +57,7 @@
       }
     }
   },
-  "applicationMethod": {
+  "application-method": {
     "label": "How did you apply for your ETA?",
     "options": {
       "UK ETA app on Android": {
@@ -71,7 +71,7 @@
       }
     }
   },
-  "applyingMethod": {
+  "applying-method": {
     "label": "How are you applying for your ETA?",
     "options": {
       "UK ETA app on Android": {
@@ -85,7 +85,7 @@
       }
     }
   },
-  "yourQuestion": {
+  "your-question": {
     "hint": "Include what you were trying to do and any error messages",
     "label": "Your question"
   },
@@ -93,7 +93,7 @@
     "hint": "Include what you were trying to do and any error messages",
     "label": "Your question"
   },
-  "questionAppOption": {
+  "question-app-option": {
     "label": "Which part of the ETA application is your question about?",
     "options": {
       "Confirming my email address with a security code": {
@@ -116,7 +116,7 @@
       }
     }
   },
-  "questionOnlineOption": {
+  "question-online-option": {
     "label": "Which part of the ETA application is your question about?",
     "options": {
       "Confirming my email address with a security code": {
@@ -136,7 +136,7 @@
       }
     }
   },
-  "etaReferenceNumber": {
+  "eta-reference-number": {
     "label": "ETA reference number {{#optional}} (optional) {{/optional}}",
     "hint": "For example, 2021-1111-1111-1111. We need your ETA reference number to give specific information about your ETA."
   }

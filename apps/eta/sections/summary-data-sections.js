@@ -8,31 +8,31 @@ module.exports = {
       },
       {
         step: '/question-about-submitted',
-        field: 'whatIsYourQuestionAbout'
+        field: 'what-is-your-question-about'
       },
       {
         step: '/question-about-not-submitted',
-        field: 'whatIsYourQuestionAboutNotSubmitted'
+        field: 'what-is-your-question-about-not-submitted'
       },
       {
         step: '/how-applied',
-        field: 'applicationMethod'
+        field: 'application-method'
       },
       {
         step: '/how-applying',
-        field: 'applyingMethod'
+        field: 'applying-method'
       },
       {
         step: '/question-app',
-        field: 'questionAppOption'
+        field: 'question-app-option'
       },
       {
         step: '/question-online',
-        field: 'questionOnlineOption'
+        field: 'question-online-option'
       },
       {
         step: '/details-submitted',
-        field: 'yourQuestion'
+        field: 'your-question'
       },
       {
         step: '/details-not-submitted',
@@ -40,7 +40,7 @@ module.exports = {
       },
       {
         step: '/details-not-submitted',
-        field: 'nameNotApplied'
+        field: 'name-not-applied'
       },
       {
         step: '/details-not-submitted',
@@ -56,13 +56,12 @@ module.exports = {
       },
       {
         step: '/details-submitted',
-        field: 'etaReferenceNumber',
+        field: 'eta-reference-number',
         parse: (list, req) => {
-          if((req.sessionModel.get('etaReferenceNumber') === '') && ((req.sessionModel.get('whatIsYourQuestionAbout') === 'I have not received a confirmation email') && (req.sessionModel.get('application-submitted') === 'Yes'))) {
+          if((req.sessionModel.get('eta-reference-number') === '') && ((req.sessionModel.get('what-is-your-question-about') === 'I have not received a confirmation email') && (req.sessionModel.get('application-submitted') === 'Yes'))) {
             return '';
-          } else {
-            return req.sessionModel.get('etaReferenceNumber') === '' ? 'ETA reference number not given' : list;
           }
+          return req.sessionModel.get('eta-reference-number') === '' ? 'ETA reference number not given' : list;
         }
       }
     ]

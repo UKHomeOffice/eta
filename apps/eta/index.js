@@ -1,7 +1,7 @@
 'use strict';
 
 const summary = require('hof').components.summary;
-const conditionalValidate = require('./behaviours/conditional-validate')
+const conditionalValidate = require('./behaviours/conditional-validate');
 
 module.exports = {
   name: 'eta',
@@ -23,11 +23,11 @@ module.exports = {
       next: '/question-about-not-submitted'
     },
     '/question-about-submitted': {
-      fields: ['whatIsYourQuestionAbout'],
+      fields: ['what-is-your-question-about'],
       forks: [{
         target: '/details-submitted',
         condition: {
-          field: 'whatIsYourQuestionAbout',
+          field: 'what-is-your-question-about',
           value: 'Question about the decision on my ETA'
         }
       }],
@@ -35,48 +35,48 @@ module.exports = {
       next: '/how-applied'
     },
     '/how-applied': {
-      fields: ['applicationMethod'],
+      fields: ['application-method'],
       next: '/details-submitted',
       continueOnEdit: true
     },
     '/details-submitted': {
-      fields: ['yourQuestion', 'email', 'name', 'etaReferenceNumber'],
+      fields: ['your-question', 'email', 'name', 'eta-reference-number'],
       template: 'your-question-submitted',
       behaviours: [conditionalValidate],
       next: '/confirm'
     },
     '/question-about-not-submitted': {
-      fields: ['whatIsYourQuestionAboutNotSubmitted'],
+      fields: ['what-is-your-question-about-not-submitted'],
       forks: [{
         target: '/how-applying',
         condition: {
-          field: 'whatIsYourQuestionAboutNotSubmitted',
+          field: 'what-is-your-question-about-not-submitted',
           value: 'Applying for an ETA'
         }
       }],
       next: '/details-not-submitted'
     },
     '/how-applying': {
-      fields: ['applyingMethod'],
+      fields: ['applying-method'],
       forks: [{
         target: '/question-online',
         condition: {
-          field: 'applyingMethod',
+          field: 'applying-method',
           value: 'Online'
         }
       }],
       next: '/question-app'
     },
     '/question-online': {
-      fields: ['questionOnlineOption'],
+      fields: ['question-online-option'],
       next: '/details-not-submitted'
     },
     '/question-app': {
-      fields: ['questionAppOption'],
+      fields: ['question-app-option'],
       next: '/details-not-submitted'
     },
     '/details-not-submitted': {
-      fields: ['your-question-not-submitted', 'nameNotApplied', 'email-not-submitted'],
+      fields: ['your-question-not-submitted', 'name-not-applied', 'email-not-submitted'],
       template: 'your-question-not-submitted',
       next: '/confirm'
     },

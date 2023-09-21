@@ -1,55 +1,55 @@
 {
   "name":{
     "required": "Enter the full name of the person that applied",
-    "maxlength": "Full name must be 255 characters or less",
+    "regex": "Full name must be 255 characters or less",
     "notUrl": "Enter a valid name"
   },
-  "nameNotApplied":{
+  "name-not-applied":{
     "required": "Enter your full name",
-    "maxlength": "Full name must be 255 characters or less",
+    "regex": "Full name must be 255 characters or less",
     "notUrl": "Enter a valid name"
   },
   "application-submitted": {
     "default": "Select yes if your question is about an ETA that has been submitted"
   },
-  "whatIsYourQuestionAbout": {
+  "what-is-your-question-about": {
     "default": "Select what your question is about"
   },
-  "whatIsYourQuestionAboutNotSubmitted": {
+  "what-is-your-question-about-not-submitted": {
     "default": "Select what your question is about"
   },
-  "applicationMethod": {
+  "application-method": {
     "default": "Select how you applied for your ETA"
   },
-  "applyingMethod": {
+  "applying-method": {
     "default": "Select how you are applying for your ETA"
   },
-  "yourQuestion": {
+  "your-question": {
     "default": "Enter your question",
-    "maxlength": "Question must be 2,000 characters or less"
+    "regex": "Question must be 2,000 characters or less"
   },
   "your-question-not-submitted": {
     "default": "Enter your question",
-    "maxlength": "Question must be 2,000 characters or less"
+    "regex": "Question must be 2,000 characters or less"
   },
   "email": {
     "required": "Enter your email address",
-    "maxlength": "Email address must be 255 characters or less",
+    "regex": "Email address must be 255 characters or less",
     "email": "Enter a real email address"
   },
   "email-not-submitted": {
     "required": "Enter your email address",
-    "maxlength": "Email address must be 255 characters or less",
+    "regex": "Email address must be 255 characters or less",
     "email": "Enter a real email address"
   },
-  "etaReferenceNumber": {
+  "eta-reference-number": {
     "regex": "Enter an ETA reference number in the correct format, for example 2021-1111-1111-1111",
     "required": "ETA reference number is required"
   },
-  "questionAppOption": {
+  "question-app-option": {
     "default": "Select which part of the application your question is about"
   },
-  "questionOnlineOption": {
+  "question-online-option": {
     "default": "Select which part of the application your question is about"
   }
 }
