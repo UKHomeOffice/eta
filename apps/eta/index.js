@@ -4,7 +4,7 @@ const config = require('../../config');
 const summary = require('hof').components.summary;
 const caseworkerEmailer = require('./behaviours/caseworker-email')(config.email);
 const customerEmailer = require('./behaviours/customer-email')(config.email);
-const conditionalValidate = require('./behaviours/conditional-validate')
+const conditionalValidate = require('./behaviours/conditional-validate');
 
 module.exports = {
   name: 'eta',

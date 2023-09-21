@@ -1,4 +1,7 @@
 {
+  "email": {
+    "subject": "Contact form sent to UKVI"
+  },
   "has-application-been-submitted": {
     "header": "Is your question about an ETA application that has been submitted?"
   },
