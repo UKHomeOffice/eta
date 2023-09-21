@@ -64,7 +64,7 @@ module.exports = {
     isPageHeading: false,
     labelClassName: 'visuallyhidden',
     mixin: 'textarea',
-    validate: ['required', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,255}$/ }],
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,255}$/ }, { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
       value: 4
@@ -74,7 +74,7 @@ module.exports = {
     isPageHeading: false,
     labelClassName: 'visuallyhidden',
     mixin: 'textarea',
-    validate: ['required', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,255}$/ }],
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,255}$/ }, { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
       value: 4
@@ -90,15 +90,15 @@ module.exports = {
   },
   email: {
     labelClassName: 'visuallyhidden',
-    validate: ['required', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
   },
   'email-not-submitted': {
     labelClassName: 'visuallyhidden',
-    validate: ['required', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
   },
   'eta-reference-number': {
     labelClassName: 'visuallyhidden',
-    validate: [{ type: 'regex', arguments: /^$|((^[0-9]{4}(-[0-9]{4}){3}$))/ }]
+    validate: ['notUrl', { type: 'regex', arguments: /^$|((^[0-9]{4}(-[0-9]{4}){3}$))/ }]
   },
   'question-app-option': {
     mixin: 'radio-group',

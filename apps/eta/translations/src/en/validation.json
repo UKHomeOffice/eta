@@ -26,25 +26,30 @@
   },
   "your-question": {
     "default": "Enter your question",
-    "regex": "Question must be 2,000 characters or less"
+    "regex": "Question must be 2,000 characters or less",
+    "notUrl": "Enter a valid question"
   },
   "your-question-not-submitted": {
     "default": "Enter your question",
-    "regex": "Question must be 2,000 characters or less"
+    "regex": "Question must be 2,000 characters or less",
+    "notUrl": "Enter a valid question"
   },
   "email": {
     "required": "Enter your email address",
     "regex": "Email address must be 255 characters or less",
-    "email": "Enter a real email address"
+    "email": "Enter a real email address",
+    "notUrl": "Enter a real email address"
   },
   "email-not-submitted": {
     "required": "Enter your email address",
     "regex": "Email address must be 255 characters or less",
-    "email": "Enter a real email address"
+    "email": "Enter a real email address",
+    "notUrl": "Enter a real email address"
   },
   "eta-reference-number": {
     "regex": "Enter an ETA reference number in the correct format, for example 2021-1111-1111-1111",
-    "required": "ETA reference number is required"
+    "required": "ETA reference number is required",
+    "notUrl": "Enter a valid ETA reference number"
   },
   "question-app-option": {
     "default": "Select which part of the application your question is about"
