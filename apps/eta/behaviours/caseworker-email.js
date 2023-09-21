@@ -19,7 +19,7 @@ const getDataRows = model => {
           email: model.email
         },
         model['email-not-submitted'] && {
-          email: model.model['email-not-submitted']
+          email: model['email-not-submitted']
         },
         model.yourQuestion && {
           yourQuestion: model.yourQuestion
@@ -78,6 +78,7 @@ const getSubject = model => {
 };
 
 module.exports = config => {
+
   return Notify(Object.assign({}, config, {
     recipient: config.caseworker,
     subject: model => getSubject(model),

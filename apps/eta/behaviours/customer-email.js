@@ -19,7 +19,7 @@ const getDataRows = model => {
           email: model.email
         },
         model['email-not-submitted'] && {
-          email: model.model['email-not-submitted']
+          email: model['email-not-submitted']
         },
         model.yourQuestion && {
           yourQuestion: model.yourQuestion
@@ -39,7 +39,7 @@ const getDataRows = model => {
 
 module.exports = config => {
   return Notify(Object.assign({}, config, {
-    recipient: model => model.email,
+    recipient: model => model.email || model['email-not-submitted'],
     subject: (model, translate) => translate('pages.email.subject'),
     template: path.resolve(__dirname, '../emails/customer.html'),
     parse: (model, translate) => {
