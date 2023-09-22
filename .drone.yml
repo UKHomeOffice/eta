@@ -18,6 +18,7 @@ environment:
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
 
+
 trigger:
   branch:
     - feature/*
