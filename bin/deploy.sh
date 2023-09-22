@@ -14,7 +14,7 @@ if [[ $1 == 'tear_down' ]]; then
 
   $kd --delete -f kube/configmaps/configmap.yml
   $kd --delete -f kube/app/networkpolicy-internal.yml 
-  $kd -f kube/app/networkpolicy-external.yml
+  $kd --delete -f kube/app/networkpolicy-external.yml
   $kd --delete -f kube/redis -f kube/app
   echo "Torn Down UAT Branch - eta-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
   exit 0

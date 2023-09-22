@@ -3,39 +3,36 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  name: {{ .APP_NAME }}-external-{{ .DRONE_SOURCE_BRANCH }}
+  name: {{ .APP_NAME }}-internal-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
-  name: {{ .APP_NAME }}-external
+  name: {{ .APP_NAME }}-internal
   {{ end }}
-{{ file .INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
-
+{{ file .INGRESS_INTERNAL_ANNOTATIONS | indent 2 }}
 spec:
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-        - {{ .DRONE_BUILD_NUMBER }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+        - {{ .DRONE_BUILD_NUMBER }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
         - eta-{{ .DRONE_SOURCE_BRANCH }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-        - dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+        - eta.uat.internal.sas-notprod.homeoffice.gov.uk
+        - {{ .APP_NAME }}.uat.internal.sas-notprod.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-        - www.preprod.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
-      {{ else }}
-        - {{ .PRODUCTION_URL }}
+        - stg.internal.eta.sas.homeoffice.gov.uk
+        - stg.internal.{{ .APP_NAME }}.sas.homeoffice.gov.uk
       {{ end }}
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      secretName: branch-tls-external
+      secretName: branch-tls-internal
       {{ else }}
-      secretName: {{ .APP_NAME }}-external
+      secretName: {{ .APP_NAME }}-internal
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     - host: eta-{{ .DRONE_SOURCE_BRANCH }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-    - host: dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+    - host: {{ .APP_NAME }}.uat.internal.sas-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-    - host: www.preprod.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
-    {{ else }}
-    - host: {{ .PRODUCTION_URL }}
+    - host: stg.internal.{{ .APP_NAME }}.sas.homeoffice.gov.uk
     {{ end }}
       http:
         paths:
