@@ -1,6 +1,5 @@
 {
   "header": "Electronic Travel Authorisation",
-  "phase": "beta",
   "confirmation": {
     "message": "Question submitted",
     "details": " "
