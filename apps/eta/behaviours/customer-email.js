@@ -9,27 +9,9 @@ const getDataRows = model => {
   return [
     {
       table: [
-        model.name && {
-          name: model.name
-        },
-        model.nameNotApplied && {
-          name: model.nameNotApplied
-        },
-        model.email && {
-          email: model.email
-        },
-        model['email-not-submitted'] && {
-          email: model['email-not-submitted']
-        },
-        model.yourQuestion && {
-          yourQuestion: model.yourQuestion
-        },
-        model['your-question-not-submitted'] && {
-          yourQuestion: model['your-question-not-submitted']
-        },
-        model.whatIsYourQuestionAbout &&  {
-          value: model.whatIsYourQuestionAbout === 'I have not received a confirmation email' ||
-              model.whatIsYourQuestionAbout ===  'I have not received a decision' ?
+        model['what-is-your-question-about'] &&  {
+          value: model['what-is-your-question-about'] === 'I have not received a confirmation email' ||
+              model['what-is-your-question-about'] ===  'I have not received a decision' ?
             'If you are waiting for a decision' : ''
         }
       ]

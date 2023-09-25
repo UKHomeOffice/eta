@@ -9,7 +9,7 @@ module.exports = {
       className: 'visuallyhidden'
     }
   },
-  whatIsYourQuestionAbout: {
+  'what-is-your-question-about': {
     isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
@@ -23,7 +23,7 @@ module.exports = {
       'Something else'
     ]
   },
-  whatIsYourQuestionAboutNotSubmitted: {
+  'what-is-your-question-about-not-submitted': {
     isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
@@ -36,7 +36,7 @@ module.exports = {
       'Something else'
     ]
   },
-  applicationMethod: {
+  'application-method': {
     mixin: 'radio-group',
     validate: ['required'],
     legend: {
@@ -48,7 +48,7 @@ module.exports = {
       'Online'
     ]
   },
-  applyingMethod: {
+  'applying-method': {
     mixin: 'radio-group',
     validate: ['required'],
     legend: {
@@ -60,13 +60,12 @@ module.exports = {
       'Online'
     ]
   },
-  yourQuestion: {
+  'your-question': {
     isPageHeading: false,
     labelClassName: 'visuallyhidden',
     mixin: 'textarea',
-    'ignore-defaults': true,
-    formatter: ['trim', 'hyphens'],
-    validate: ['required', { type: 'maxlength', arguments: 2000 }],
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,255}$/ },
+      { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
       value: 4
@@ -76,7 +75,8 @@ module.exports = {
     isPageHeading: false,
     labelClassName: 'visuallyhidden',
     mixin: 'textarea',
-    validate: ['required', { type: 'maxlength', arguments: 2000 }],
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,255}$/ },
+      { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
       value: 4
@@ -84,11 +84,11 @@ module.exports = {
   },
   name: {
     labelClassName: 'visuallyhidden',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 255 }]
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z\-\. ]{1,255}$/ }]
   },
-  nameNotApplied: {
+  'name-not-applied': {
     labelClassName: 'visuallyhidden',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 255 }]
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z\-\. ]{1,255}$/ }]
   },
   email: {
     labelClassName: 'visuallyhidden',
@@ -98,11 +98,11 @@ module.exports = {
     labelClassName: 'visuallyhidden',
     validate: ['required', 'email', { type: 'maxlength', arguments: 255}]
   },
-  etaReferenceNumber: {
+  'eta-reference-number': {
     labelClassName: 'visuallyhidden',
-    validate: [{ type: 'regex', arguments: /^$|((^[0-9]{4}(-[0-9]{4}){3}$))/ }]
+    validate: ['notUrl', { type: 'regex', arguments: /^$|((^[0-9]{4}(-[0-9]{4}){3}$))/ }]
   },
-  questionAppOption: {
+  'question-app-option': {
     mixin: 'radio-group',
     validate: ['required'],
     legend: {
@@ -117,7 +117,7 @@ module.exports = {
       'Something else'
     ]
   },
-  questionOnlineOption: {
+  'question-online-option': {
     mixin: 'radio-group',
     validate: ['required'],
     legend: {

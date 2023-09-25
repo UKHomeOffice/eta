@@ -46,25 +46,25 @@
       "application-submitted": {
         "label": "Have you submitted an ETA application?"
       },
-      "whatIsYourQuestionAbout": {
+      "what-is-your-question-about": {
         "label": "What is your question about?"
       },
-      "whatIsYourQuestionAboutNotSubmitted": {
+      "what-is-your-question-about-not-submitted": {
         "label": "What is your question about?"
       },
-      "applicationMethod": {
+      "application-method": {
         "label": "How did you apply?"
       },
-      "applyingMethod": {
+      "applying-method": {
         "label": "How are you applying for your ETA?"
       },
-      "questionOnlineOption": {
+      "question-online-option": {
         "label": "Which part of the application is your question about?"
       },
-      "questionAppOption": {
+      "question-app-option": {
         "label": "Which part of the application is your question about?"
       },
-      "yourQuestion": {
+      "your-question": {
         "label": "Your question"
       },
       "your-question-not-submitted": {
@@ -73,7 +73,7 @@
       "name": {
         "label": "Full name of the person who applied"
       },
-      "nameNotApplied": {
+      "name-not-applied": {
         "label": "Your name"
       },
       "email": {
@@ -82,7 +82,7 @@
       "email-not-submitted": {
         "label": "Your email address"
       },
-      "etaReferenceNumber": {
+      "eta-reference-number": {
         "label": "ETA reference number"
       }
     }
