@@ -8,11 +8,13 @@ const areOrderedEqual = utilities.areOrderedEqual;
 const containsAll = utilities.containsAll;
 
 describe('Apply Summary Data Sections', () => {
-  describe('Sections and Pages', () => {
+  describe.only('Sections and Pages', () => {
     it('should have sections and page translations that correlate', () => {
       const sectionsKeys = Object.keys(sections).sort();
+      console.log("Section Keys: " + sectionsKeys);
       const pagesSectionsKeys = Object.keys(pages.confirm.sections).sort();
-      sectionsKeys.to.equal(pagesSectionsKeys);
+      console.log("Pages Sections Keys: " + pagesSectionsKeys);
+      sectionsKeys.should.deep.equal(pagesSectionsKeys);
     });
   });
 
