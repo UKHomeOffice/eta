@@ -90,11 +90,11 @@ module.exports = {
   },
   email: {
     labelClassName: 'visuallyhidden',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
+    validate: ['required', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
   },
   'email-not-submitted': {
     labelClassName: 'visuallyhidden',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
+    validate: ['required', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
   },
   'eta-reference-number': {
     labelClassName: 'visuallyhidden',
