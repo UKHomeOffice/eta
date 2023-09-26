@@ -36,9 +36,6 @@
     "sections":{
       "case-details": {
         "header": " "
-      },
-      "application-details":{
-        "header": " "
       }
     },
     "header": "Check your answers",
