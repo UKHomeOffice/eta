@@ -64,7 +64,8 @@ module.exports = {
     isPageHeading: false,
     labelClassName: 'visuallyhidden',
     mixin: 'textarea',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,255}$/ }, { type: 'maxlength', arguments: 2000 }],
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,2000}$/ },
+      { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
       value: 4
@@ -74,7 +75,8 @@ module.exports = {
     isPageHeading: false,
     labelClassName: 'visuallyhidden',
     mixin: 'textarea',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,255}$/ }, { type: 'maxlength', arguments: 2000 }],
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9!?@#£&:()\\-`.+,/\" ]{1,2000}$/ },
+      { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
       value: 4
