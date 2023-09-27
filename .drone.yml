@@ -13,8 +13,8 @@ environment:
   IMAGE_URL: quay.io/ukhomeofficedigital
   IMAGE_REPO: eta
   GIT_REPO: UKHomeOffice/eta
-  HOF_CONFIG: hof-services-config/ETA
-  NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
+  HOF_CONFIG: hof-services-config/Electronic_Travel_Authorisation
+  NON_PROD_AVAILABILITY: Sun-Sat 06:00-24:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
 
@@ -120,10 +120,10 @@ steps:
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     environment:
-      DOCKER_PASSWORD:
-        from_secret: DOCKER_PASSWORD
+      QUAY_PASSWORD_SEGAS_ROBOT:
+        from_secret: QUAY_PASSWORD_SEGAS_ROBOT
     commands:
-    - docker login -u="ukhomeofficedigital+eta_robot" -p=$${DOCKER_PASSWORD} quay.io
+    - docker login -u="ukhomeofficedigital+segas_robot" -p=$${QUAY_PASSWORD_SEGAS_ROBOT} quay.io
     - docker tag $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     - docker push $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     when:

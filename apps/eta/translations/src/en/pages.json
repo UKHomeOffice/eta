@@ -1,9 +1,87 @@
 {
+  "email": {
+    "subject": "Contact form sent to UKVI"
+  },
   "has-application-been-submitted": {
     "header": "Is your question about an ETA application that has been submitted?"
   },
+  "application-submitted": {
+    "header": "Is your question about an ETA application that has been submitted?"
+  },
+  "question-about-submitted": {
+    "header": "What is your question about?"
+  },
+  "question-about-not-submitted": {
+    "header": "What is your question about?"
+  },
+  "how-applied": {
+    "header": "How did you apply for your ETA?"
+  },
+  "how-applying": {
+    "header": "How are you applying for your ETA?"
+  },
+  "details-submitted": {
+    "header": "Your question and contact details"
+  },
+  "details-not-submitted": {
+    "header": "Your question and contact details"
+  },
+  "question-app": {
+    "header": "Which part of the ETA application is your question about?"
+  },
+  "question-online": {
+    "header": "Which part of the ETA application is your question about?"
+  },
   "confirm": {
+    "sections":{
+      "case-details": {
+        "header": " "
+      }
+    },
     "header": "Check your answers",
-    "warning" :"Check the information you have entered is correct."
+    "fields" : {
+      "application-submitted": {
+        "label": "Have you submitted an ETA application?"
+      },
+      "what-is-your-question-about": {
+        "label": "What is your question about?"
+      },
+      "what-is-your-question-about-not-submitted": {
+        "label": "What is your question about?"
+      },
+      "application-method": {
+        "label": "How did you apply?"
+      },
+      "applying-method": {
+        "label": "How are you applying for your ETA?"
+      },
+      "question-online-option": {
+        "label": "Which part of the application is your question about?"
+      },
+      "question-app-option": {
+        "label": "Which part of the application is your question about?"
+      },
+      "your-question": {
+        "label": "Your question"
+      },
+      "your-question-not-submitted": {
+        "label": "Your question"
+      },
+      "name": {
+        "label": "Full name of the person who applied"
+      },
+      "name-not-applied": {
+        "label": "Your name"
+      },
+      "email": {
+        "label": "Your email address"
+      },
+      "email-not-submitted": {
+        "label": "Your email address"
+      },
+      "eta-reference-number": {
+        "label": "ETA reference number"
+      }
+    }
   }
 }

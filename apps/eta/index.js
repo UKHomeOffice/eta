@@ -1,6 +1,11 @@
 'use strict';
 
+const config = require('../../config');
 const summary = require('hof').components.summary;
+const caseworkerEmailer = require('./behaviours/caseworker-email')(config.email);
+const customerEmailer = require('./behaviours/customer-email')(config.email);
+const conditionalValidate = require('./behaviours/conditional-validate');
+
 
 module.exports = {
   name: 'eta',
@@ -10,26 +15,78 @@ module.exports = {
     '/cookies': 'cookies'
   },
   steps: {
-    '/has-application-been-submitted': {
-      fields: ['has-application-been-submitted'],
+    '/application-submitted': {
+      fields: ['application-submitted'],
       forks: [{
-        target: '/what-is-your-question-about-submitted-eta',
+        target: '/question-about-submitted',
         condition: {
-          field: 'has-application-been-submitted',
-          value: 'yes'
+          field: 'application-submitted',
+          value: 'Yes'
         }
       }],
-      next: '/confirm',
-      backLink: false
+      next: '/question-about-not-submitted'
     },
-    '/what-is-your-question-about-submitted-eta': {
-
+    '/question-about-submitted': {
+      fields: ['what-is-your-question-about'],
+      forks: [{
+        target: '/details-submitted',
+        condition: {
+          field: 'what-is-your-question-about',
+          value: 'Question about the decision on my ETA'
+        }
+      }],
+      continueOnEdit: true,
+      next: '/how-applied'
     },
-    '/what-is-your-question-about-eta': {
-
+    '/how-applied': {
+      fields: ['application-method'],
+      next: '/details-submitted',
+      continueOnEdit: true
+    },
+    '/details-submitted': {
+      fields: ['your-question', 'email', 'name', 'eta-reference-number'],
+      template: 'your-question-submitted',
+      behaviours: [conditionalValidate],
+      next: '/confirm'
+    },
+    '/question-about-not-submitted': {
+      fields: ['what-is-your-question-about-not-submitted'],
+      forks: [{
+        target: '/how-applying',
+        condition: {
+          field: 'what-is-your-question-about-not-submitted',
+          value: 'Applying for an ETA'
+        }
+      }],
+      next: '/details-not-submitted'
+    },
+    '/how-applying': {
+      fields: ['applying-method'],
+      forks: [{
+        target: '/question-online',
+        condition: {
+          field: 'applying-method',
+          value: 'Online'
+        }
+      }],
+      next: '/question-app'
+    },
+    '/question-online': {
+      fields: ['question-online-option'],
+      next: '/details-not-submitted'
+    },
+    '/question-app': {
+      fields: ['question-app-option'],
+      next: '/details-not-submitted'
+    },
+    '/details-not-submitted': {
+      fields: ['your-question-not-submitted', 'name-not-applied', 'email-not-submitted'],
+      template: 'your-question-not-submitted',
+      next: '/confirm'
     },
     '/confirm': {
-      behaviours: [summary],
+      behaviours: [summary, caseworkerEmailer, customerEmailer],
+      sections: require('./sections/summary-data-sections'),
       next: '/confirmation'
     },
     '/confirmation': {

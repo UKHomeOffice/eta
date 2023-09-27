@@ -1,11 +1,24 @@
-#A new UK Visas and Immigration complaint has been submitted
+Question submitted through the "Ask a question about ETA" form
 
+#Contact details
+
+Name:
+{{name}}{{name-not-applied}}
+
+Email:
+{{email}}{{email-not-submitted}}
+
+
+#What the question is about
 {{#data}}
-  #{{title}}
-  {{#table}}
-  {{#value}}
-    {{label}}: {{value}}
-  - - -
-  {{/value}}
-  {{/table}}
+{{#table}}
+{{#value}}
+  * {{{value}}}
+{{/value}}
+{{/table}}
 {{/data}}
+
+#Details of the question
+{{your-question}}{{your-question-not-submitted}}
+
+

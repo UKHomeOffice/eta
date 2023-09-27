@@ -1,0 +1,22 @@
+{{<partials-page}}
+  {{$page-content}}
+  <strong>{{#t}}fields.your-question-not-submitted.label{{/t}}</strong>
+  {{#renderField}}your-question-not-submitted{{/renderField}}
+
+  <strong>{{#t}}fields.name-not-applied.label{{/t}}</strong>
+  {{#input-text}}name-not-applied{{/input-text}}
+
+  <strong>{{#t}}fields.email-not-submitted.label{{/t}}</strong>
+  {{#input-text}}email-not-submitted{{/input-text}}
+
+  <strong>Or look for help on GOV.UK</strong>
+  <br>
+  <p>Check the <a href="https://www.gov.uk/guidance/electronic-travel-authorisation-eta">ETA guidance on GOV.UK </a> for an answer to your question.</p>
+
+  <p>If you are using the UK ETA app, <a  href="https://apply-for-an-eta.homeoffice.gov.uk/">try applying online instead.</a></p>
+  <br>
+
+  {{#input-submit}}continue{{/input-submit}}
+
+  {{/page-content}}
+{{/partials-page}}
