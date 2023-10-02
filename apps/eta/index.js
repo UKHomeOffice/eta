@@ -5,6 +5,7 @@ const summary = require('hof').components.summary;
 const caseworkerEmailer = require('./behaviours/caseworker-email')(config.email);
 const customerEmailer = require('./behaviours/customer-email')(config.email);
 const conditionalValidate = require('./behaviours/conditional-validate');
+const resetSessionData = require('./behaviours/reset-session-data');
 
 
 module.exports = {
@@ -85,7 +86,7 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
-      behaviours: [summary, caseworkerEmailer, customerEmailer],
+      behaviours: [summary, caseworkerEmailer, customerEmailer, resetSessionData],
       sections: require('./sections/summary-data-sections'),
       next: '/confirmation'
     },
