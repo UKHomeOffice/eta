@@ -7,6 +7,13 @@ const settings = require('./hof.settings');
 settings.routes = settings.routes.map(route => require(route));
 settings.root = __dirname;
 settings.csp = {
+  fontSrc: [
+    'https://fonts.googleapis.com/'
+  ],
+  scriptSrc: [
+    'https://tagmanager.google.com/',
+    'https://www.googletagmanager.com/'
+  ],
   imgSrc: [
     'www.google-analytics.com',
     'ssl.gstatic.com',
