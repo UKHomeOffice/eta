@@ -6,7 +6,6 @@ const caseworkerEmailer = require('./behaviours/caseworker-email')(config.email)
 const customerEmailer = require('./behaviours/customer-email')(config.email);
 const conditionalValidate = require('./behaviours/conditional-validate');
 
-
 module.exports = {
   name: 'eta',
   baseUrl: '/',
@@ -85,7 +84,7 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
-      behaviours: [summary, caseworkerEmailer, customerEmailer],
+      behaviours: [summary, caseworkerEmailer, customerEmailer, 'complete'],
       sections: require('./sections/summary-data-sections'),
       next: '/confirmation'
     },

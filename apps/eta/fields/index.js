@@ -84,11 +84,11 @@ module.exports = {
   },
   name: {
     labelClassName: 'visuallyhidden',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z\-\. ]{1,255}$/ }]
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[\s\S]{1,255}$/ }]
   },
   'name-not-applied': {
     labelClassName: 'visuallyhidden',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[a-zA-Z\-\. ]{1,255}$/ }]
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[\s\S]{1,255}$/ }]
   },
   email: {
     labelClassName: 'visuallyhidden',
