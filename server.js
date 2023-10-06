@@ -25,7 +25,7 @@ settings.csp = {
     'https://region1.analytics.google.com'
   ]
 };
-settings.environmentType = process.env.ENVIRONMENT
+settings.environmentType = process.env.ENVIRONMENT;
 
 if (process.env.REDIS_URL) {
   settings.redis = process.env.REDIS_URL;
