@@ -15,5 +15,9 @@ module.exports = {
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
-  }
+  },
+  redis: {
+    port: process.env.REDIS_PORT || '6379',
+    host: process.env.REDIS_HOST || '127.0.0.1'
+  },
 };
