@@ -10,6 +10,7 @@ Electronic Travel Authorisation (ETA) Application built using HOF (Home Office F
 - [Redis server](http://redis.io/download) running on the default port
 
 ### Env
+
 - NOTIFY_KEY=<ETA Gov notify team api key>
 - NOTIFY_TEMPLATE=<Gov notify email template>
 - CASEWORKER_EMAIL=<caseworker test email address>
