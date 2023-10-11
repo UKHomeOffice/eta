@@ -83,7 +83,6 @@ module.exports = {
     }]
   },
   name: {
-    labelClassName: 'visuallyhidden',
     validate: ['required', 'notUrl', { type: 'regex', arguments: /^[\s\S]{1,255}$/ }]
   },
   'name-not-applied': {

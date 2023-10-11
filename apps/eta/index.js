@@ -14,6 +14,10 @@ module.exports = {
     '/cookies': 'cookies'
   },
   steps: {
+    '/start': {
+      template: 'start',
+      next: '/application-submitted'
+    },
     '/application-submitted': {
       fields: ['application-submitted'],
       forks: [{
