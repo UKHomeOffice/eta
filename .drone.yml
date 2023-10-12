@@ -116,6 +116,23 @@ steps:
       branch: master
       event: [push, pull_request]
 
+  - name: pull image for scan
+    pull: Always
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    resources:
+      limits:
+        cpu: 100
+        memory: 256Mi
+    commands:
+    # wait for docker service to be up before running docker build
+    - /usr/local/bin/wait
+    - docker pull acp-example-app:${DRONE_COMMIT_SHA}
+    when:
+      event:
+      - pull_request
+      - push
+      - tag
+  
   - name: image_to_quay
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -200,7 +217,7 @@ steps:
       branch: master
       event: pull_request
 
-  # Snyk & Anchore security scans which run after branch deployment to prevent blocking of PR UAT tests
+  # Snyk & Trivy security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
     pull: if-not-exists
     image: node:18
@@ -216,17 +233,20 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: anchore_scan
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
-    pull: always
-    environment:
-      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
-      LOCAL_IMAGE: true
-      TOLERATE: medium
-      WHITELIST_FILE: hof-services-config/ETA/anchore-cve-exceptions.txt
-    when:
-      branch: master
-      event: pull_request
+  - name: scan-image
+    pull: Always
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
+    resources:
+      limits:
+        cpu: 1000
+        memory: 1024Mi
+      environment:
+      IMAGE_NAME: aeta:${DRONE_COMMIT_SHA}
+      when:
+      event:
+      - pull_request
+      - push
+      - tag
 
   # Deploy to master UAT environment
   - name: deploy_to_uat
@@ -401,17 +421,6 @@ steps:
       cron: security_scans
       event: cron
 
-  - name: cron_anchore_scan
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
-    pull: always
-    environment:
-      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
-      LOCAL_IMAGE: true
-      TOLERATE: medium
-      WHITELIST_FILE: hof-services-config/ETA/anchore-cve-exceptions.txt
-    when:
-      cron: security_scans
-      event: cron
 
   # Slack notification upon a CRON job fail
   - name: cron_notify_slack_tear_down_pr_envs
@@ -452,12 +461,6 @@ services:
   - name: docker
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
 
-  # Anchore scanning needs background service to run
-  - name: anchore-submission-server
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
-    pull: always
-    commands:
-      - /run.sh server
 
   # Redis session setup in background so integration tests can run
   - name: session
