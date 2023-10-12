@@ -59,7 +59,7 @@ module.exports = {
         field: 'eta-reference-number',
         parse: (list, req) => {
           if((req.sessionModel.get('eta-reference-number') === '')
-          && ((req.sessionModel.get('what-is-your-question-about') === 'I have not received a confirmation email')
+          && ((req.sessionModel.get('what-is-your-question-about') === 'I-have-not-received-a-confirmation-email')
           && (req.sessionModel.get('application-submitted') === 'Yes'))) {
             return 'ETA reference number not given';
           }
