@@ -2,6 +2,9 @@
   "email": {
     "subject": "Contact form sent to UKVI"
   },
+  "start": {
+    "header": "Ask a question about Electronic Travel Authorisation (ETA)"
+  },
   "has-application-been-submitted": {
     "header": "Is your question about an ETA application that has been submitted?"
   },
