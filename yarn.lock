@@ -2776,10 +2776,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@~20.2.26:
-  version "20.2.26"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-20.2.26.tgz#2964c3be00c6772bfc013557efbab68333ec54eb"
-  integrity sha512-GTWzS/tSgEiJBpIthJY8hWhul/FCd33BS+IqgzJrCf685o3MAN/JKNEGI9YfMKfQGr9+/r3OXbLfccNunGoymQ==
+hof@~20.2.27:
+  version "20.2.27"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-20.2.27.tgz#c10b3b157abbc2a4a9378e2cc6067b06092dcb58"
+  integrity sha512-TzzbdjfC3PYyUr4U4CYmj0luix110N0vGMXDu0S0Zx0Gm4DVvOnnA0uJi5KUzOnKQDC9QbE1ecCMRyQ2EW2nAA==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
