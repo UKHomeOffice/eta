@@ -395,7 +395,7 @@ steps:
       cron: tear_down_pr_envs
       event: cron
 
-  # CRON job steps that runs security scans using Snyk
+  # CRON job steps that runs security scans using Snyk & Anchore
   - name: cron_clone_repos
     image: alpine/git
     environment:
@@ -430,6 +430,18 @@ steps:
       - yarn install --frozen-lockfile
       - yarn run postinstall
       - yarn run test:snyk
+    when:
+      cron: security_scans
+      event: cron
+
+  - name: cron_anchore_scan
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
+    pull: always
+    environment:
+      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
+      LOCAL_IMAGE: true
+      TOLERATE: medium
+      WHITELIST_FILE: hof-services-config/ETA/anchore-cve-exceptions.txt
     when:
       cron: security_scans
       event: cron
