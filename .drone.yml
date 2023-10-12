@@ -241,16 +241,21 @@ steps:
         cpu: 1000
         memory: 1024Mi
       environment:
-      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
+        IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
+        IGNORE_UNFIXED: "true"
       when:
-      event:
-      - pull_request
-      - push
-      - tag
+        event:
+        - pull_request
+        - push
+        - tag
 
   services:
     - name: docker
       image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+      resources:
+        limits:
+          cpu: 1000
+          memory: 1024Mi
 
   volumes:
     - name: dockersock
