@@ -116,22 +116,22 @@ steps:
       branch: master
       event: [push, pull_request]
 
-  - name: pull image for scan
-    pull: always
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    resources:
-      limits:
-        cpu: 100
-        memory: 256Mi
-    environment: 
-      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
-      TOLERATE: high
-      IGNORE_UNFIXED: true
-    when:
-      event:
-      - pull_request
-      - push
-      - tag
+  # - name: pull image for scan
+  #   pull: always
+  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  #   resources:
+  #     limits:
+  #       cpu: 100
+  #       memory: 256Mi
+  #   environment: 
+  #     IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
+  #     TOLERATE: high
+  #     IGNORE_UNFIXED: true
+  #   when:
+  #     event:
+  #     - pull_request
+  #     - push
+  #     - tag
   
   - name: image_to_quay
     pull: if-not-exists
