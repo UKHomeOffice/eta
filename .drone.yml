@@ -249,18 +249,6 @@ steps:
         - push
         - tag
 
-  services:
-    - name: docker
-      image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-      resources:
-        limits:
-          cpu: 1000
-          memory: 1024Mi
-
-  volumes:
-    - name: dockersock
-      temp: {}
-
   # Deploy to master UAT environment
   - name: deploy_to_uat
     pull: if-not-exists
@@ -395,7 +383,7 @@ steps:
       cron: tear_down_pr_envs
       event: cron
 
-  # CRON job steps that runs security scans using Snyk & Anchore
+  # CRON job steps that runs security scans using Snyk & Trivy
   - name: cron_clone_repos
     image: alpine/git
     environment:
