@@ -117,16 +117,16 @@ steps:
       event: [push, pull_request]
 
   - name: pull image for scan
-    pull: Always
+    pull: always
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     resources:
       limits:
         cpu: 100
         memory: 256Mi
-    commands:
-    # wait for docker service to be up before running docker build
-    - /usr/local/bin/wait
-    - docker pull eta:${DRONE_COMMIT_SHA}
+    environment: 
+      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
+      TOLERATE: high
+      IGNORE_UNFIXED: true
     when:
       event:
       - pull_request
