@@ -126,7 +126,7 @@ steps:
     commands:
     # wait for docker service to be up before running docker build
     - /usr/local/bin/wait
-    - docker pull acp-example-app:${DRONE_COMMIT_SHA}
+    - docker pull eta:${DRONE_COMMIT_SHA}
     when:
       event:
       - pull_request
