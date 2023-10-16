@@ -27,11 +27,11 @@
   "what-is-your-question-about": {
     "label": "What is your question about?",
     "options": {
-      "I have not received a confirmation email": {
+      "I-have-not-received-a-confirmation-email": {
         "label": "I have not received a confirmation email",
         "hint": "Use this option if you did not get a confirmation email within 2 hours of applying"
       },
-      "I have not received a decision": {
+      "I-have-not-received-a-decision": {
         "label": "I have not received a decision",
         "hint": "Use this option if you have not received a decision email within 3 working days of applying"
       },

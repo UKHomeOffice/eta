@@ -17,8 +17,8 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: [
-      'I have not received a confirmation email',
-      'I have not received a decision',
+      'I-have-not-received-a-confirmation-email',
+      'I-have-not-received-a-decision',
       'Question about the decision on my ETA',
       'Something else'
     ]
@@ -83,7 +83,6 @@ module.exports = {
     }]
   },
   name: {
-    labelClassName: 'visuallyhidden',
     validate: ['required', 'notUrl', { type: 'regex', arguments: /^[\s\S]{1,255}$/ }]
   },
   'name-not-applied': {
