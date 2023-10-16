@@ -17,8 +17,9 @@ const getDataRows = model => {
           value: model['application-submitted']  === 'Yes' ? 'Application submitted' : 'Application not submitted'
         },
         {
-          value: model['what-is-your-question-about'] === 'I-have-not-received-a-confirmation-email' || 
-          model['what-is-your-question-about'] === 'I-have-not-received-a-decision' ? model['what-is-your-question-about'].replace(/-/g, " ") : model['what-is-your-question-about']
+          value: model['what-is-your-question-about'] === 'I-have-not-received-a-confirmation-email' ||
+            model['what-is-your-question-about'] === 'I-have-not-received-a-decision' ?
+            model['what-is-your-question-about'].replace(/-/g, ' ') : model['what-is-your-question-about']
         },
         {
           value: model['what-is-your-question-about-not-submitted']
@@ -41,8 +42,9 @@ const getSubject = model => {
   let subject;
 
   if (model['what-is-your-question-about']) {
-    subject = model['what-is-your-question-about'] === 'I-have-not-received-a-confirmation-email' || 
-    model['what-is-your-question-about'] === 'I-have-not-received-a-decision' ? model['what-is-your-question-about'].replace(/-/g, " ") : model['what-is-your-question-about'];
+    subject = model['what-is-your-question-about'] === 'I-have-not-received-a-confirmation-email' ||
+    model['what-is-your-question-about'] === 'I-have-not-received-a-decision' ?
+      model['what-is-your-question-about'].replace(/-/g, ' ') : model['what-is-your-question-about'];
   }
   if (model['what-is-your-question-about-not-submitted']) {
     subject = model['what-is-your-question-about-not-submitted'];
