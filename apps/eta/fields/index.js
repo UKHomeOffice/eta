@@ -64,7 +64,7 @@ module.exports = {
     isPageHeading: false,
     labelClassName: 'visuallyhidden',
     mixin: 'textarea',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[\s\S]{1,2000}$/ },
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]{1,2000}$/ },
       { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
@@ -75,7 +75,7 @@ module.exports = {
     isPageHeading: false,
     labelClassName: 'visuallyhidden',
     mixin: 'textarea',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[\s\S]{1,2000}$/ },
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]{1,2000}$/ },
       { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
