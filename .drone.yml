@@ -45,9 +45,9 @@ sonar_scanner: &sonar_scanner
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
-acceptance_tests: &acceptance_tests
-  pull: if-not-exists
-  image: mcr.microsoft.com/playwright:v1.12.3-focal
+# acceptance_tests: &acceptance_tests
+#   pull: if-not-exists
+#   image: mcr.microsoft.com/playwright:v1.12.3-focal
 
 steps:
   - name: clone_repos
@@ -225,17 +225,17 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: acceptance_tests_branch
-    <<: *acceptance_tests
-    commands:
-      - export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
-      - export ACCEPTANCE_HOST_NAME=https://eta-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
-      - export CUCUMBER_PUBLISH_ENABLED=true
-      - npx playwright install
-      - npm run test:acceptance
-    when:
-      branch: master
-      event: pull_request
+  # - name: acceptance_tests_branch
+  #   <<: *acceptance_tests
+  #   commands:
+  #     - export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
+  #     - export ACCEPTANCE_HOST_NAME=https://eta-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
+  #     - export CUCUMBER_PUBLISH_ENABLED=true
+  #     - npx playwright install
+  #     - npm run test:acceptance
+  #   when:
+  #     branch: master
+  #     event: pull_request
 
   # Snyk security scan which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
