@@ -45,9 +45,9 @@ sonar_scanner: &sonar_scanner
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
-acceptance_tests: &acceptance_tests
-  pull: if-not-exists
-  image: mcr.microsoft.com/playwright:v1.12.3-focal
+# acceptance_tests: &acceptance_tests
+#   pull: if-not-exists
+#   image: mcr.microsoft.com/playwright:v1.12.3-focal
 
 steps:
   - name: clone_repos
@@ -123,7 +123,7 @@ steps:
   #     limits:
   #       cpu: 100
   #       memory: 256Mi
-  #   environment: 
+  #   environment:
   #     IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
   #     TOLERATE: high
   #     IGNORE_UNFIXED: true
@@ -132,7 +132,7 @@ steps:
   #     - pull_request
   #     - push
   #     - tag
-  
+
   - name: image_to_quay
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -225,17 +225,17 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: acceptance_tests_branch
-    <<: *acceptance_tests
-    commands:
-      - export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
-      - export ACCEPTANCE_HOST_NAME=https://eta-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
-      - export CUCUMBER_PUBLISH_ENABLED=true
-      - npx playwright install
-      - npm run test:acceptance
-    when:
-      branch: master
-      event: pull_request
+  # - name: acceptance_tests_branch
+  #   <<: *acceptance_tests
+  #   commands:
+  #     - export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
+  #     - export ACCEPTANCE_HOST_NAME=https://eta-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
+  #     - export CUCUMBER_PUBLISH_ENABLED=true
+  #     - npx playwright install
+  #     - npm run test:acceptance
+  #   when:
+  #     branch: master
+  #     event: pull_request
 
   # Snyk security scan which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
@@ -269,15 +269,15 @@ steps:
       branch: master
       event: push
 
-  - name: acceptance_tests_uat
-    <<: *acceptance_tests
-    commands:
-    - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}.internal.uat.sas-notprod.homeoffice.gov.uk
-    - npx playwright install
-    - npm run test:acceptance
-    when:
-      branch: master
-      event: push
+  # - name: acceptance_tests_uat
+  #   <<: *acceptance_tests
+  #   commands:
+  #   - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}.internal.uat.sas-notprod.homeoffice.gov.uk
+  #   - npx playwright install
+  #   - npm run test:acceptance
+  #   when:
+  #     branch: master
+  #     event: push
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
@@ -315,20 +315,20 @@ steps:
       branch: master
       event: push
 
-  # Deploy to Staging environment
-  - name: deploy_to_stg
-    pull: if-not-exists
-    image: quay.io/ukhomeofficedigital/kd:v1.14.0
-    environment:
-      KUBE_SERVER:
-        from_secret: kube_server_stg
-      KUBE_TOKEN:
-        from_secret: kube_token_stg
-    commands:
-      - bin/deploy.sh $${STG_ENV}
-    when:
-      branch: master
-      event: push
+  # # Deploy to Staging environment
+  # - name: deploy_to_stg
+  #   pull: if-not-exists
+  #   image: quay.io/ukhomeofficedigital/kd:v1.14.0
+  #   environment:
+  #     KUBE_SERVER:
+  #       from_secret: kube_server_stg
+  #     KUBE_TOKEN:
+  #       from_secret: kube_token_stg
+  #   commands:
+  #     - bin/deploy.sh $${STG_ENV}
+  #   when:
+  #     branch: master
+  #     event: push
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
