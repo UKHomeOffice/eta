@@ -5,8 +5,8 @@ type: kubernetes
 
 environment:
   APP_NAME: eta
-  PROD_ENV: eta
-  STG_ENV: eta-stg
+  PROD_ENV: sas-eta-prod
+  STG_ENV: sas-eta-stg
   UAT_ENV: sas-eta-uat
   BRANCH_ENV: sas-eta-notprod
   PRODUCTION_URL: www.ask-question-about-electronic-travel-authorisation.service.gov.uk
