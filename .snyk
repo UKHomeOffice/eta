@@ -14,7 +14,7 @@ ignore:
      - '*':
         reason: Need to replace nodeemailer in HOF
         expires: '2024-11-01T17:02:21.865Z'
-    SNYK-JS-TOUGHCOOKIE-5672873:
+  SNYK-JS-TOUGHCOOKIE-5672873:
     - '*':
         reason: No available patch currently in circulation
         expires: '2024-11-01T17:02:21.865Z'
