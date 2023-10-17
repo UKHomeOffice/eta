@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "hof": "~20.2.28",
+    "snyk": "^1.1235.0",
     "typeahead-aria": "^1.0.4"
   },
   "devDependencies": {
