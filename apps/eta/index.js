@@ -19,7 +19,7 @@ module.exports = {
       next: '/application-submitted'
     },
     '/accessibility': {
-      template: 'accessibility',
+      template: 'accessibility'
     },
     '/application-submitted': {
       fields: ['application-submitted'],
