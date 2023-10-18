@@ -24,7 +24,7 @@ spec:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
       secretName: branch-tls-external
       {{ else }}
-      secretName: {{ .APP_NAME }}-external
+      secretName: cert-cmio
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
