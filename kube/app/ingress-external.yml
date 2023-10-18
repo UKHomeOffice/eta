@@ -22,10 +22,10 @@ spec:
       {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
         - {{ .PRODUCTION_URL }}
       {{ end }}
-      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      secretName: branch-tls-external
-      {{ else }}
+      {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
       secretName: cert-cmio
+      {{ else }}
+      secretName: branch-tls-external
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
