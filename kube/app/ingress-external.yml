@@ -5,7 +5,7 @@ metadata:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   name: {{ .APP_NAME }}-external-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
-  name: {{ .APP_NAME }}-external
+  name: cert-cmio
   {{ end }}
 {{ file .INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
