@@ -26,12 +26,12 @@
   },
   "your-question": {
     "default": "Enter your question",
-    "regex": "Question must be 2,000 characters or less",
+    "regex": "Question must be 2,000 characters or less and must not include [ ] < > / |",
     "notUrl": "Enter a valid question"
   },
   "your-question-not-submitted": {
     "default": "Enter your question",
-    "regex": "Question must be 2,000 characters or less",
+    "regex": "Question must be 2,000 characters or less and must not include [ ] < > |",
     "notUrl": "Enter a valid question"
   },
   "email": {
