@@ -9,5 +9,5 @@
     "name": "eta.hof.sid",
     "ttl": 3600
   },
-  "getAccessibility": true
+  "getAccessibility": false
 }

@@ -18,6 +18,9 @@ module.exports = {
       template: 'start',
       next: '/application-submitted'
     },
+    '/accessibility': {
+      template: 'accessibility',
+    },
     '/application-submitted': {
       fields: ['application-submitted'],
       forks: [{
