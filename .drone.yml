@@ -9,7 +9,7 @@ environment:
   STG_ENV: sas-eta-stg
   UAT_ENV: sas-eta-uat
   BRANCH_ENV: sas-eta-notprod
-  PRODUCTION_URL: www.ask-question-about-electronic-travel-authorisation.service.gov.uk
+  PRODUCTION_URL: www.ask-question-about-electronic-travel-authorisation.homeoffice.gov.uk
   IMAGE_URL: quay.io/ukhomeofficedigital
   IMAGE_REPO: eta
   GIT_REPO: UKHomeOffice/eta
