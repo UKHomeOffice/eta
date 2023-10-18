@@ -9,6 +9,7 @@ metadata:
   {{ end }}
 {{ file .INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
+  ingressClassName: nginx-external
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -18,7 +19,7 @@ spec:
         - eta.uat.sas-notprod.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
         - eta.stg.sas.homeoffice.gov.uk
-      {{ else }}
+      {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
         - {{ .PRODUCTION_URL }}
       {{ end }}
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -33,7 +34,7 @@ spec:
     - host: eta.uat.sas-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - host: eta.stg.sas.homeoffice.gov.uk
-    {{ else }}
+    {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
     - host: {{ .PRODUCTION_URL }}
     {{ end }}
       http:
