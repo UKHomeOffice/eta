@@ -28,6 +28,9 @@ const getDataRows = model => {
           value: model['application-method']
         },
         {
+          value: model['applying-method']
+        },
+        {
           value: model['question-app-option']
         },
         {
