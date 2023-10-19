@@ -31,7 +31,7 @@
     "technical-info-header": "Technical information about this website's accessibility",
     "technical-info-p1": "The Home Office is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.",
     "compliance-header": "Compliance status",
-    "compliance-p1": "This website is partially compliant with the <a href='https://www.w3.org/TR/WCAG21/'>Web Content Accessibility Guidelines version 2.1</a> AA standard, due to the non-compliances listed below.",
+    "compliance-p1": "This website is partially compliant with the <a href='https://www.w3.org/TR/WCAG22/'>Web Content Accessibility Guidelines version 2.2</a> AA standard, due to the non-compliances listed below.",
     "non-accessible-header": "Non-accessible Content",
     "non-accessible-p1": "The content listed below is non-accessible for the following reasons.",
     "non-compliance-header": "Non-compliance with the accessibility regulations",
