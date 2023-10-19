@@ -28,7 +28,7 @@ spec:
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
       secretName: {{ .APP_NAME }}-external
       {{ else if eq .KUBE_NAMESPACE .PROD_ENV}}
-      secretName: cert-cmio
+      secretName: cert-cmio-xxq8z
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
