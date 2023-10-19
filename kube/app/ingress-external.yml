@@ -20,6 +20,7 @@ spec:
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
         - eta.stg.sas.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
+        - prod.internal.eta.sas.homeoffice.gov.uk
         - {{ .PRODUCTION_URL }}
       {{ end }}
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
