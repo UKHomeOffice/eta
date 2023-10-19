@@ -10,7 +10,7 @@ module.exports = {
     }
   },
   'what-is-your-question-about': {
-    isPageHeading: true,
+    isPageHeading: false,
     mixin: 'radio-group',
     validate: ['required'],
     legend: {
@@ -24,7 +24,7 @@ module.exports = {
     ]
   },
   'what-is-your-question-about-not-submitted': {
-    isPageHeading: true,
+    isPageHeading: false,
     mixin: 'radio-group',
     validate: ['required'],
     legend: {
