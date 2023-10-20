@@ -161,6 +161,7 @@ steps:
       SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: true
+      ALLOW_CVE_LIST_FILE: hof-services-config/ETA/trivy-cve-exceptions.txt
     when:
       event:
       - pull_request
