@@ -12,7 +12,7 @@ const getDataRows = model => {
         model['what-is-your-question-about'] &&  {
           value: model['what-is-your-question-about'] === 'I-have-not-received-a-confirmation-email' ||
               model['what-is-your-question-about'] ===  'I-have-not-received-a-decision' ?
-            'If you are waiting for a decision' : ''
+            'If you need to travel soon' : ''
         }
       ]
     }
