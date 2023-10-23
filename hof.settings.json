@@ -1,5 +1,5 @@
 {
-  "appName": "ETA",
+  "appName": "Ask a question about ETA",
   "theme": "govUK",
   "routes": [
     "./apps/eta"
