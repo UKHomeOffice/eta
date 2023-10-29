@@ -1,9 +1,19 @@
 {{<partials-page}}
-  {{$page-content}}
-    {{#rows}}
-      {{> partials-summary-table}}
-    {{/rows}}
-    <p>{{warning}}</p>
-    {{#input-submit}}confirm{{/input-submit}}
-  {{/page-content}}
+{{$page-content}}
+  <table class="table-details">
+    <tbody>
+      {{#rows}}
+        {{#fields}}
+          <tr{{#className}} class="{{className}}"{{/className}}>
+            <th>{{label}}</th>
+            <td data-value="{{value}}" data-field="{{field}}">{{value}}</td>
+            <td><a href="{{baseUrl}}{{step}}/edit#{{field}}" id="{{field}}-change">{{#t}}buttons.change{{/t}}</a></td>
+          </tr>
+        {{/fields}}
+      {{/rows}}
+    </tbody>
+  </table>
+  <p>{{warning}}</p>
+  {{#input-submit}}confirm{{/input-submit}}
+{{/page-content}}
 {{/partials-page}}
