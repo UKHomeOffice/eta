@@ -24,7 +24,7 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
-    "hof": "~20.2.28",
+    "hof": "^20.3.4",
     "snyk": "^1.1235.0",
     "typeahead-aria": "^1.0.4"
   },
