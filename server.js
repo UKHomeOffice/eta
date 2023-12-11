@@ -25,6 +25,12 @@ settings.csp = {
     'https://region1.analytics.google.com'
   ]
 };
+/**
+ *  Config variables needed for Google Tag Manager setup
+ */
+settings.eventName = "pageLoad";
+settings.pageName = "ETA | Customer Contact Webform |";
+settings.applicationType = "ETA | Customer Contact";
 settings.environmentType = process.env.ENVIRONMENT;
 
 if (process.env.REDIS_URL) {
