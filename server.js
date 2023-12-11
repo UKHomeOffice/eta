@@ -25,19 +25,35 @@ settings.csp = {
     'https://region1.analytics.google.com'
   ]
 };
+
 /**
  *  Config variables needed for Google Tag Manager setup
  */
-settings.pageEvent = "pageLoad";
-settings.pageName = "ETA | Customer Contact Webform |";
-settings.applicationType = "ETA | Customer Contact";
-settings.environmentType = process.env.ENVIRONMENT;
+Object.assign(settings, {
+  gtm: {
+    config: {
+      event: 'pageLoad',
+      applicationType: 'ETA | Customer Contact',
+      environmentType: process.env.ENVIRONMENT || 'dev'
+    },
+    composePageName: function (page, convertPage, serviceName = 'ETA') {
+      switch(serviceName) {
+        case 'ETA':
+          return 'ETA | Customer Contact | ' + convertPage(page);
+        // Add other services here...
+        default:
+          return convertPage(page);
+      }
+    }
+  }
+});
 
 if (process.env.REDIS_URL) {
   settings.redis = process.env.REDIS_URL;
 }
 
 const app = hof(settings);
+
 app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
   next();
