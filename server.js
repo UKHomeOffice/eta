@@ -36,14 +36,8 @@ Object.assign(settings, {
       applicationType: 'ETA | Customer Contact',
       environmentType: process.env.ENVIRONMENT || 'dev'
     },
-    composePageName: function (page, convertPage, serviceName = 'ETA') {
-      switch(serviceName) {
-        case 'ETA':
-          return 'ETA | Customer Contact | ' + convertPage(page);
-        // Add other services here...
-        default:
-          return convertPage(page);
-      }
+    composePageName: function (page, convertPage) {
+      return 'ETA | Customer Contact | ' + convertPage(page);
     }
   }
 });

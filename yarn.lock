@@ -3178,10 +3178,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@20.3.8-beta-gtm:
-  version "20.3.8-beta-gtm"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-20.3.8-beta-gtm.tgz#c776b6c4af9bc640e8ec5f417c6de251c580b6ac"
-  integrity sha512-cmpQROVCfcOqOV4v+kKCvPXfVEFCwd4CJRvuiJzvuaYvMdn/qAMcqfkUnMWLfYdODDWB4fFXjOshCj5q6Trj8w==
+hof@20.3.9-beta-gtm:
+  version "20.3.9-beta-gtm"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-20.3.9-beta-gtm.tgz#becdb48341723424aa18ead94d268afcc63f9ca7"
+  integrity sha512-RShXb0+Vvi/kSote31SN0KhRHKH/Fp26kR5iUIOtb0JpU894XOjIrpfXC22hn6yUeTB0FLWECF+ypecn3byVYg==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
