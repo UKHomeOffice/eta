@@ -25,13 +25,29 @@ settings.csp = {
     'https://region1.analytics.google.com'
   ]
 };
-settings.environmentType = process.env.ENVIRONMENT;
+
+/**
+ *  Config variables needed for Google Tag Manager setup
+ */
+Object.assign(settings, {
+  gtm: {
+    config: {
+      event: 'pageLoad',
+      applicationType: 'ETA | Customer Contact',
+      environmentType: process.env.ENVIRONMENT || 'dev'
+    },
+    composePageName: function (page, convertPage) {
+      return 'ETA | Customer Contact | ' + convertPage(page);
+    }
+  }
+});
 
 if (process.env.REDIS_URL) {
   settings.redis = process.env.REDIS_URL;
 }
 
 const app = hof(settings);
+
 app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
   next();
