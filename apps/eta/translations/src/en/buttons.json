@@ -1,5 +1,6 @@
 {
   "start": "Start now",
   "confirm": "Accept and send",
-  "question": "Continue with your question"
+  "question": "Continue with your question",
+  "continue-and-ask-question": "Continue and ask question"
 }

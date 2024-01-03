@@ -63,7 +63,19 @@ module.exports = {
           field: 'what-is-your-question-about-not-submitted',
           value: 'Applying for an ETA'
         }
+      },
+      {
+        target: '/eta-needed',
+        condition: {
+          field: 'what-is-your-question-about-not-submitted',
+          value: 'Do I need an ETA?'
+        }
       }],
+      next: '/details-not-submitted'
+    },
+    '/eta-needed': {
+      template: 'eta-needed',
+      continueOnEdit: true,
       next: '/details-not-submitted'
     },
     '/how-applying': {
