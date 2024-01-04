@@ -65,7 +65,7 @@ module.exports = {
         }
       },
       {
-        target: '/eta-needed',
+        target: '/eligibility',
         condition: {
           field: 'what-is-your-question-about-not-submitted',
           value: 'Do I need an ETA?'
@@ -73,8 +73,8 @@ module.exports = {
       }],
       next: '/details-not-submitted'
     },
-    '/eta-needed': {
-      template: 'eta-needed',
+    '/eligibility': {
+      template: 'eligibility',
       continueOnEdit: true,
       next: '/details-not-submitted'
     },
