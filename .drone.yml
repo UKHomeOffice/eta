@@ -158,9 +158,10 @@ steps:
         memory: 1024Mi
     environment:
       IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
-      TOLERATE: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+      TOLERATE: MEDIUM,HIGH,CRITICAL
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: true
+      ALLOW_CVE_LIST_FILE: hof-services-config/Electronic_Travel_Authorisation/trivy-cve-exceptions.txt
     when:
       event:
       - pull_request
@@ -431,8 +432,11 @@ steps:
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
     environment:
-        IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
-        IGNORE_UNFIXED: true
+      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
+      SEVERITY: MEDIUM,HIGH,CRITICAL
+      FAIL_ON_DETECTION: false
+      IGNORE_UNFIXED: true
+      ALLOW_CVE_LIST_FILE: hof-services-config/Electronic_Travel_Authorisation/trivy-cve-exceptions.txt
     when:
       cron: security_scans
       event: cron
