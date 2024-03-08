@@ -46,4 +46,12 @@ ignore:
     - '*':
       reason: Missing Release of Resource after Effective Lifetime
       expires: '2024-04-05T17:02:21.865Z'
+  SNYK-JS-FOLLOWREDIRECTS-6444610:
+    - '*':
+      reason: Need to update follow-redirects in HOF to version 1.15.6.
+      expires: '2024-06-21T00:00:00.000Z'
+  SNYK-JS-NODEMAILER-6219989:
+  - hof > nodemailer:
+      reason: Need to replace nodemailer in HOF
+      expires: '2024-06-21T00:00:00.00Z'
 patch: {}
