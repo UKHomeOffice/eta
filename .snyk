@@ -22,4 +22,12 @@ ignore:
      - '*':
         reason: Need to replace nodeemailer in HOF
         expires: '2024-11-01T17:02:21.865Z'
+  SNYK-JS-FOLLOWREDIRECTS-6444610:
+    - '*':
+        reason: Need to upgrade package in HOF
+        expires: '2024-06-22T17:02:21.865Z'
+  SNYK-JS-NODEMAILER-6219989:
+    - '*':
+        reason: Need to upgrade nodemailer in HOF
+        expires: '2024-06-22T17:02:21.865Z'
 patch: {}
