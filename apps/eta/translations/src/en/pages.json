@@ -57,10 +57,16 @@
     "header": "Is your question about an ETA application that has been submitted?"
   },
   "question-about-submitted": {
+    "title": "What is your question about? - Ask a question about ETA",
     "header": "What is your question about?"
   },
   "question-about-not-submitted": {
+    "title": "What is your question about? - Ask a question about ETA",
     "header": "What is your question about?"
+  },
+  "eligibility": {
+    "title": "Find out if you need an ETA",
+    "header": "Find out if you need an ETA"
   },
   "how-applied": {
     "header": "How did you apply for your ETA?"

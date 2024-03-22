@@ -30,4 +30,28 @@ ignore:
     - '*':
         reason: Need to upgrade nodemailer in HOF
         expires: '2024-06-22T17:02:21.865Z'
+  SNYK-JS-AXIOS-6032459:
+     - '*':
+        reason: Cross-site Request Forgery (CSRF)
+        expires: '2024-04-05T17:02:21.865Z'
+  SNYK-JS-AXIOS-6124857:
+    - '*':
+      reason: Regular Expression Denial of Service (ReDoS)
+      expires: '2024-04-05T17:02:21.865Z'
+  SNYK-JS-AXIOS-6144788:
+    - '*':
+      reason: Prototype Pollution
+      expires: '2024-04-05T17:02:21.865Z'
+  SNYK-JS-BROWSERIFYSIGN-6037026:
+    - '*':
+      reason: Improper Verification of Cryptographic Signature
+      expires: '2024-04-05T17:02:21.865Z'
+  SNYK-JS-FOLLOWREDIRECTS-6141137:
+    - '*':
+      reason: Improper Input Validation
+      expires: '2024-04-05T17:02:21.865Z'
+  SNYK-JS-INFLIGHT-6095116:
+    - '*':
+      reason: Missing Release of Resource after Effective Lifetime
+      expires: '2024-04-05T17:02:21.865Z'
 patch: {}
