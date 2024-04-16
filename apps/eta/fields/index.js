@@ -1,6 +1,11 @@
 'use strict';
 
 module.exports = {
+  'test-field': {
+    isPageHeading: true,
+    mixin: 'input-text',
+    validate: ['required']
+  },
   'application-submitted': {
     mixin: 'radio-group',
     options: ['Yes', 'No'],

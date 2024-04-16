@@ -2,6 +2,9 @@
   "name": {
     "label": "Full name of the person who applied"
   },
+  "test-field": {
+    "label": "Test Label"
+  },
   "name-not-applied": {
     "label": "Your full name"
   },
