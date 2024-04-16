@@ -16,6 +16,11 @@ module.exports = {
   steps: {
     '/start': {
       template: 'start',
+      next: '/test'
+    },
+    '/test': {
+      fields: ['test-field'],
+      template: 'test',
       next: '/application-submitted'
     },
     '/accessibility': {
