@@ -6,7 +6,7 @@
   "author": "",
   "description": "",
   "engines": {
-    "node": ">=18.12.1"
+    "node": ">=18.12.1 <21.0.0"
   },
   "license": "MIT",
   "scripts": {
@@ -24,7 +24,7 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
-    "hof": "^20.4.0",
+    "hof": "~21.1.0",
     "snyk": "^1.1235.0",
     "typeahead-aria": "^1.0.4"
   },
