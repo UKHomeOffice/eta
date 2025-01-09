@@ -56,5 +56,10 @@
   },
   "question-online-option": {
     "default": "Select which part of the application your question is about"
+  },
+  "passport-number": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Passport number must be 10 characters or less",
+    "regex": "Passport number can only have numbers and letters A-Z"
   }
 }

@@ -101,6 +101,11 @@ module.exports = {
     labelClassName: 'visuallyhidden',
     validate: ['notUrl', { type: 'regex', arguments: /^$|((^[0-9]{4}(-[0-9]{4}){3}$))/ }]
   },
+  'passport-number': {
+    labelClassName: 'visuallyhidden',
+    validate: ['notUrl', { type: 'regex', arguments: /^[a-zA-Z0-9]{1,10}$/ }, 
+      { type: 'maxlength', arguments: 10 }]
+  },
   'question-app-option': {
     mixin: 'radio-group',
     validate: ['required'],
