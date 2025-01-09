@@ -1,13 +1,9 @@
 {{<partials-page}}
   {{$page-content}}
-  <strong>{{#t}}fields.your-question-not-submitted.label{{/t}}</strong>
-  {{#renderField}}your-question-not-submitted{{/renderField}}
 
-  <strong>{{#t}}fields.name-not-applied.label{{/t}}</strong>
-  {{#input-text}}name-not-applied{{/input-text}}
-
-  <strong>{{#t}}fields.email-not-submitted.label{{/t}}</strong>
-  {{#input-text}}email-not-submitted{{/input-text}}
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
 
   <strong>Or look for help on GOV.UK</strong>
   <br>

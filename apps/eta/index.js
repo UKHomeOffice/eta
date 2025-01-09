@@ -50,8 +50,7 @@ module.exports = {
       continueOnEdit: true
     },
     '/details-submitted': {
-      fields: ['your-question', 'email', 'name', 'eta-reference-number'],
-      template: 'your-question-submitted',
+      fields: ['your-question', 'email', 'name', 'eta-reference-number', 'passport-number'],
       behaviours: [conditionalValidate],
       next: '/confirm'
     },
@@ -98,7 +97,7 @@ module.exports = {
       next: '/details-not-submitted'
     },
     '/details-not-submitted': {
-      fields: ['your-question-not-submitted', 'name-not-applied', 'email-not-submitted'],
+      fields: ['your-question-not-submitted', 'name-not-applied', 'email-not-submitted', 'passport-number'],
       template: 'your-question-not-submitted',
       next: '/confirm'
     },

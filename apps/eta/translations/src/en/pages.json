@@ -133,6 +133,9 @@
       "email-not-submitted": {
         "label": "Your email address"
       },
+      "passport-number": {
+        "label": "Your passport number"
+      },
       "eta-reference-number": {
         "label": "ETA reference number"
       }
