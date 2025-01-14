@@ -141,7 +141,7 @@
     "hint": "For example, 2021-1111-1111-1111. We need your ETA reference number to give specific information about your ETA."
   },
   "passport-number": {
-    "label": "Passport number",
-    "hint": "Please enter your passport number. For example, '120383978A'"
+    "label": "Passport number (optional)",
+    "hint": "For example, 1208297A"
   }
 }

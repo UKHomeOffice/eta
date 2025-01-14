@@ -13,6 +13,10 @@ const getDataRows = model => {
           value: model['eta-reference-number'] === '' ? 'ETA reference number: not given'
             : 'ETA reference number: ' +  model['eta-reference-number']
         },
+        model['passport-number'] && {
+          value: model['passport-number'] === '' ? 'Passport number: Not provided'
+            : 'Passport number: ' +  model['passport-number']
+        },
         {
           value: model['application-submitted']  === 'Yes' ? 'Application submitted' : 'Application not submitted'
         },
