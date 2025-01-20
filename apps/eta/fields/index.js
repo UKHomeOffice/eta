@@ -62,7 +62,7 @@ module.exports = {
   },
   'your-question': {
     isPageHeading: false,
-    labelClassName: 'visuallyhidden',
+    labelClassName: ['govuk-!-font-weight-bold'],
     mixin: 'textarea',
     validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]{1,2000}$/ },
       { type: 'maxlength', arguments: 2000 }],
@@ -73,7 +73,7 @@ module.exports = {
   },
   'your-question-not-submitted': {
     isPageHeading: false,
-    labelClassName: 'visuallyhidden',
+    labelClassName: ['govuk-!-font-weight-bold'],
     mixin: 'textarea',
     validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]{1,2000}$/ },
       { type: 'maxlength', arguments: 2000 }],
@@ -83,23 +83,29 @@ module.exports = {
     }]
   },
   name: {
+    labelClassName: ['govuk-!-font-weight-bold'],
     validate: ['required', 'notUrl', { type: 'regex', arguments: /^[\s\S]{1,255}$/ }]
   },
   'name-not-applied': {
-    labelClassName: 'visuallyhidden',
+    labelClassName: ['govuk-!-font-weight-bold'],
     validate: ['required', 'notUrl', { type: 'regex', arguments: /^[\s\S]{1,255}$/ }]
   },
   email: {
-    labelClassName: 'visuallyhidden',
+    labelClassName: ['govuk-!-font-weight-bold'],
     validate: ['required', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
   },
   'email-not-submitted': {
-    labelClassName: 'visuallyhidden',
+    labelClassName: ['govuk-!-font-weight-bold'],
     validate: ['required', { type: 'regex', arguments: /^[a-zA-Z0-9_\-\@\.]{1,255}$/ }, 'email']
   },
   'eta-reference-number': {
-    labelClassName: 'visuallyhidden',
+    labelClassName: ['govuk-!-font-weight-bold'],
     validate: ['notUrl', { type: 'regex', arguments: /^$|((^[0-9]{4}(-[0-9]{4}){3}$))/ }]
+  },
+  'passport-number': {
+    labelClassName: ['govuk-!-font-weight-bold'],
+    validate: ['notUrl', { type: 'regex', arguments: /^$|^[a-zA-Z0-9]{1,9}$/ },
+      { type: 'maxlength', arguments: 9 }]
   },
   'question-app-option': {
     mixin: 'radio-group',

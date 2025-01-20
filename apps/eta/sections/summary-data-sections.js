@@ -47,6 +47,16 @@ module.exports = {
         field: 'email-not-submitted'
       },
       {
+        step: '/details-not-submitted',
+        field: 'passport-number',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/details-not-submitted')) {
+            return null;
+          }
+          return req.sessionModel.get('passport-number') === '' ? 'Not provided' : list;
+        }
+      },
+      {
         step: '/details-submitted',
         field: 'email'
       },
@@ -64,6 +74,16 @@ module.exports = {
             return 'ETA reference number not given';
           }
           return req.sessionModel.get('eta-reference-number') === '' ? 'ETA reference number not given' : list;
+        }
+      },
+      {
+        step: '/details-submitted',
+        field: 'passport-number',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/details-submitted')) {
+            return null;
+          }
+          return req.sessionModel.get('passport-number') === '' ? 'Not provided' : list;
         }
       }
     ]
