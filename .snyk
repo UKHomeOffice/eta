@@ -17,5 +17,5 @@ ignore:
   SNYK-JS-ELLIPTIC-8187303:
     - '*':
         reason: No direct upgrade or patch availanle
-        expires: '2025-01-16T17:02:21.865Z'
+        expires: '2025-03-16T17:02:21.865Z'
 patch: {}

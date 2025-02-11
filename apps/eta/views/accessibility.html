@@ -1,5 +1,17 @@
-{{<partials-page}}
-  {{$page-content}}
+{{<layout}}
+  {{$journeyHeader}}
+    {{#t}}journey.header{{/t}}
+  {{/journeyHeader}}
+
+  {{$propositionHeader}}
+    {{> partials-navigation}}
+  {{/propositionHeader}}
+
+  {{$header}}
+    {{header}}
+  {{/header}}
+
+  {{$content}}
     <ul class="list list-bullet">
         <li>{{#t}}pages.accessibility.intro-p2-li1{{/t}}</li>
         <li>{{#t}}pages.accessibility.intro-p2-li2{{/t}}</li>
@@ -42,5 +54,5 @@
     <p class="govuk-body">{{#t}}pages.accessibility.preparation-p1{{/t}}</p>
     <p class="govuk-body">{{#t}}pages.accessibility.preparation-p2{{/t}}</p>
     <p class="govuk-body">{{#t}}pages.accessibility.preparation-p3{{/t}}</p>
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}

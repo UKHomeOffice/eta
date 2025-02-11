@@ -4,6 +4,9 @@
   "routes": [
     "./apps/eta"
   ],
+  "behaviours": [
+    "hof/components/session-timeout-warning"
+  ],
   "views": ["./apps/eta/views"],
   "session": {
     "name": "eta.hof.sid",
