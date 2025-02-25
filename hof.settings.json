@@ -10,7 +10,7 @@
   "views": ["./apps/eta/views"],
   "session": {
     "name": "eta.hof.sid",
-    "ttl": 3600
+    "ttl": 1800
   },
   "getAccessibility": false
 }
