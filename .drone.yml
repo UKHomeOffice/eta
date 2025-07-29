@@ -14,7 +14,7 @@ environment:
   IMAGE_REPO: eta
   GIT_REPO: UKHomeOffice/eta
   HOF_CONFIG: hof-services-config/Electronic_Travel_Authorisation
-  NON_PROD_AVAILABILITY: Sun-Sat 06:00-24:00 Europe/London
+  NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
 
@@ -59,6 +59,7 @@ steps:
         from_secret: drone_git_token
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       branch:
         include:
@@ -66,7 +67,16 @@ steps:
         - feature/*
       event: [push, pull_request]
 
-  - name: setup_deploy
+  - name: sonar_scanner
+    <<: *sonar_scanner
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: [push, pull_request]
+
+  - name: setup
     pull: if-not-exists
     image: node:20
     environment:
@@ -77,37 +87,37 @@ steps:
     when:
       branch:
         include:
-        - master
-      event: push
+          - master
+          - feature/*
+      event: [push, pull_request]
 
-  - name: linting_deploy
+  - name: linting
     <<: *linting
     when:
       branch:
         include:
           - master
-      event: push
+          - feature/*
+      event: [push, pull_request]
+    depends_on:
+      - setup
 
-  - name: unit_tests_deploy
+  - name: unit_tests
     <<: *unit_tests
     when:
       branch:
         include:
-          - master
-      event: push
-
-  - name: sonar_scanner_deploy
-    <<: *sonar_scanner
-    when:
-      branch:
-        include:
-          - master
-      event: push
+        - master
+        - feature/*
+      event: [push, pull_request]
+    depends_on:
+      - linting
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
-      - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+      # wait for docker service to be up before running docker build
+      - /usr/local/bin/wait
       - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
     volumes:
       - name: dockersock
@@ -116,22 +126,28 @@ steps:
       branch: master
       event: [push, pull_request]
 
-  # - name: pull image for scan
-  #   pull: always
-  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-  #   resources:
-  #     limits:
-  #       cpu: 100
-  #       memory: 256Mi
-  #   environment:
-  #     IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
-  #     TOLERATE: high
-  #     IGNORE_UNFIXED: true
-  #   when:
-  #     event:
-  #     - pull_request
-  #     - push
-  #     - tag
+  # Trivy Security Scannner for scanning OS related vulnerabilities in Base image of Dockerfile
+  - name: scan_base_image_os
+    pull: always
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
+    resources:
+      limits:
+        cpu: 1000
+        memory: 1024Mi
+    environment:
+      IMAGE_NAME: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+      SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
+      SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
+      FAIL_ON_DETECTION: false
+      IGNORE_UNFIXED: false
+      ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    when:
+      event: [push, pull_request]
+    depends_on:
+      - clone_repos
 
   - name: image_to_quay
     pull: if-not-exists
@@ -146,10 +162,11 @@ steps:
     when:
       branch: master
       event: [push, pull_request]
+    depends_on:
+      - build_image
 
-# Trivy Security Scannner
-
-  - name: scan-image
+  # Trivy Security Scannner for scanning nodejs packages in Yarn
+  - name: scan_node_packages
     pull: always
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     resources:
@@ -158,17 +175,19 @@ steps:
         memory: 1024Mi
     environment:
       IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
-      TOLERATE: MEDIUM,HIGH,CRITICAL
+      SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
       FAIL_ON_DETECTION: false
-      IGNORE_UNFIXED: true
-      ALLOW_CVE_LIST_FILE: hof-services-config/Electronic_Travel_Authorisation/trivy-cve-exceptions.txt
+      IGNORE_UNFIXED: false
+      ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
     when:
-      event:
-      - pull_request
-      - push
-      - tag
+      event: [push, pull_request]
+    depends_on:
+      - build_image
 
-  # Deploy to pull request UAT environment
+  # Deploy to pull request Branch environment
   - name: deploy_to_branch
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -183,48 +202,8 @@ steps:
     when:
       branch: master
       event: pull_request
-
-  - name: setup_branch
-    pull: if-not-exists
-    image: node:20
-    environment:
-      NOTIFY_KEY: USE_MOCK
-    commands:
-      - yarn install --frozen-lockfile
-      - yarn run postinstall
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
-
-  - name: linting_branch
-    <<: *linting
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
-
-  - name: unit_tests_branch
-    <<: *unit_tests
-    when:
-      branch:
-        include:
-        - master
-        - feature/*
-      event: pull_request
-
-  - name: sonar_scanner_branch
-    <<: *sonar_scanner
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
+    depends_on:
+      - image_to_quay
 
   # - name: acceptance_tests_branch
   #   <<: *acceptance_tests
@@ -237,22 +216,6 @@ steps:
   #   when:
   #     branch: master
   #     event: pull_request
-
-  # Snyk security scan which run after branch deployment to prevent blocking of PR UAT tests
-  - name: snyk_scan
-    pull: if-not-exists
-    image: node:20
-    environment:
-      SNYK_TOKEN:
-        from_secret: snyk_token
-    commands:
-      - yarn run test:snyk
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
 
 
   # Deploy to master UAT environment
@@ -358,6 +321,8 @@ steps:
     when:
       target: PROD
       event: promote
+    depends_on:
+      - sanity_check_build_prod
 
   # Deploy to Production environment
   - name: deploy_to_prod
@@ -389,7 +354,7 @@ steps:
       cron: tear_down_pr_envs
       event: cron
 
-  # CRON job steps that runs security scans using Snyk & Trivy
+  # CRON job steps that runs security scans using Trivy
   - name: cron_clone_repos
     image: alpine/git
     environment:
@@ -399,6 +364,7 @@ steps:
         from_secret: drone_git_token
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       cron: security_scans
       event: cron
@@ -414,68 +380,88 @@ steps:
       cron: security_scans
       event: cron
 
-  - name: cron_snyk_scan
-    pull: if-not-exists
-    image: node:20
-    environment:
-      SNYK_TOKEN:
-        from_secret: snyk_token
-    commands:
-      - yarn install --frozen-lockfile
-      - yarn run postinstall
-      - yarn run test:snyk
-    when:
-      cron: security_scans
-      event: cron
-
-  - name: cron_trivy_scan
+  - name: cron_trivy_scan_node_packages
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
     environment:
-      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
-      SEVERITY: MEDIUM,HIGH,CRITICAL
-      FAIL_ON_DETECTION: false
-      IGNORE_UNFIXED: true
-      ALLOW_CVE_LIST_FILE: hof-services-config/Electronic_Travel_Authorisation/trivy-cve-exceptions.txt
+        IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
+        SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
+        SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
+        FAIL_ON_DETECTION: true
+        IGNORE_UNFIXED: false
+        ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     when:
       cron: security_scans
       event: cron
+      status:
+        - success
+        - failure
+    depends_on:
+      - cron_build_image
 
+  - name: cron_trivy_scan_image_os
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
+    pull: always
+    environment:
+        IMAGE_NAME: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+        FAIL_ON_DETECTION: true
+        IGNORE_UNFIXED: false
+        ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
+    when:
+      cron: security_scans
+      event: cron
+    depends_on:
+      - cron_clone_repos
 
   # Slack notification upon a CRON job fail
   - name: cron_notify_slack_tear_down_pr_envs
     pull: if-not-exists
-    image: plugins/slack
+    image: plugins/slack:1.4.1
     settings:
-      channel: sas-build
+      channel: sas-hof-build-notify
       failure: ignore
-      icon_url: http://readme.drone.io/0.5/logo_dark.svg
-      icon.url: http://readme.drone.io/0.5/logo_dark.svg
-      template: "CRON Job {{build.deployTo}} of ETA has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
-      username: Drone
+      icon.url: https://readme.drone.io/logo.svg
+      template: >
+            *✘ {{ uppercasefirst build.status }}*: CRON Job `tear_down_pr_envs` for *Electronic Travel Authorisation* has failed.
+
+            Branch <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | Commit <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+
+            *Build <{{build.link}}|#{{build.number}}>*
+      username: Drone_CI
       webhook:
-        from_secret: slack_webhook
+        from_secret: slack_sas_hof_build_notify_webhook
     when:
       cron: tear_down_pr_envs
       event: cron
-      status: failure
+      status:
+        - failure
+    depends_on:
+      - cron_tear_down
 
   - name: cron_notify_slack_security_scans
     pull: if-not-exists
-    image: plugins/slack
+    image: plugins/slack:1.4.1
     settings:
-      channel: sas-build
+      channel: sas-hof-security
       failure: ignore
-      icon_url: http://readme.drone.io/0.5/logo_dark.svg
-      icon.url: http://readme.drone.io/0.5/logo_dark.svg
-      template: "CRON Job {{build.deployTo}} of ETA Complaints has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
-      username: Drone
+      icon.url: https://readme.drone.io/logo.svg
+      template: >
+            *✘ {{ uppercasefirst build.status }}*: CRON Job `security_scans` for *Electronic Travel Authorisation* has failed.
+
+            Branch <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | Commit <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+
+            *Build <{{build.link}}|#{{build.number}}>*
+      username: Drone_CI
       webhook:
-        from_secret: slack_webhook
+        from_secret: slack_sas_hof_security_webhook
     when:
       cron: security_scans
       event: cron
-      status: failure
+      status:
+        - failure
+    depends_on:
+      - cron_trivy_scan_image_os
+      - cron_trivy_scan_node_packages
 
 services:
   - name: docker
