@@ -220,6 +220,8 @@ steps:
           - master
           - feature/*
       event: pull_request
+    depends_on:
+      - image_to_quay
 
   - name: unit_tests_branch
     <<: *unit_tests
@@ -229,6 +231,8 @@ steps:
         - master
         - feature/*
       event: pull_request
+    depends_on:
+      - lionting
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
