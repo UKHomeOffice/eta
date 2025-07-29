@@ -14,7 +14,7 @@ environment:
   IMAGE_REPO: eta
   GIT_REPO: UKHomeOffice/eta
   HOF_CONFIG: hof-services-config/Electronic_Travel_Authorisation
-  NON_PROD_AVAILABILITY: Sun-Sat 06:00-24:00 Europe/London
+  NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
 
@@ -67,16 +67,16 @@ steps:
         - feature/*
       event: [push, pull_request]
 
-  - name: sonar_scanner_branch
+  - name: sonar_scanner
     <<: *sonar_scanner
     when:
       branch:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: [push, pull_request]
 
-  - name: setup_branch
+  - name: setup
     pull: if-not-exists
     image: node:20
     environment:
@@ -89,67 +89,29 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: [push, pull_request]
 
-  - name: linting_branch
+  - name: linting
     <<: *linting
     when:
       branch:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: [push, pull_request]
     depends_on:
-      - setup_branch
+      - setup
 
-  - name: unit_tests_branch
+  - name: unit_tests
     <<: *unit_tests
     when:
       branch:
         include:
         - master
         - feature/*
-      event: pull_request
+      event: [push, pull_request]
     depends_on:
-      - linting_branch
-
-  - name: setup_deploy
-    pull: if-not-exists
-    image: node:20
-    environment:
-      NOTIFY_KEY: USE_MOCK
-    commands:
-      - yarn install --frozen-lockfile
-      - yarn run postinstall
-    when:
-      branch:
-        include:
-        - master
-      event: push
-
-  - name: linting_deploy
-    <<: *linting
-    when:
-      branch:
-        include:
-          - master
-      event: push
-
-  - name: unit_tests_deploy
-    <<: *unit_tests
-    when:
-      branch:
-        include:
-          - master
-      event: push
-
-  - name: sonar_scanner_deploy
-    <<: *sonar_scanner
-    when:
-      branch:
-        include:
-          - master
-      event: push
+      - linting
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -225,7 +187,7 @@ steps:
     depends_on:
       - build_image
 
-  # Deploy to pull request UAT environment
+  # Deploy to pull request Branch environment
   - name: deploy_to_branch
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
