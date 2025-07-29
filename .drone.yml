@@ -232,7 +232,7 @@ steps:
         - feature/*
       event: pull_request
     depends_on:
-      - lionting
+      - linting
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
