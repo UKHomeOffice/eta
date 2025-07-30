@@ -111,7 +111,7 @@ steps:
         - feature/*
       event: [push, pull_request]
     depends_on:
-      - linting
+      - setup
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -125,6 +125,9 @@ steps:
     when:
       branch: master
       event: [push, pull_request]
+    depends_on:
+      - linting
+      - unit_tests
 
   # Trivy Security Scannner for scanning OS related vulnerabilities in Base image of Dockerfile
   - name: scan_base_image_os
@@ -186,6 +189,7 @@ steps:
       event: [push, pull_request]
     depends_on:
       - build_image
+      - clone_repos
 
   # Deploy to pull request Branch environment
   - name: deploy_to_branch
@@ -203,6 +207,7 @@ steps:
       branch: master
       event: pull_request
     depends_on:
+      - clone_repos
       - image_to_quay
 
   # - name: acceptance_tests_branch
@@ -216,7 +221,6 @@ steps:
   #   when:
   #     branch: master
   #     event: pull_request
-
 
   # Deploy to master UAT environment
   - name: deploy_to_uat
@@ -232,6 +236,9 @@ steps:
     when:
       branch: master
       event: push
+    depends_on:
+      - clone_repos
+      - image_to_quay
 
   # - name: acceptance_tests_uat
   #   <<: *acceptance_tests
@@ -278,6 +285,9 @@ steps:
     when:
       branch: master
       event: push
+    depends_on:
+      - get_pr_branch
+      - deploy_to_uat
 
   # # Deploy to Staging environment
   # - name: deploy_to_stg
