@@ -24,7 +24,7 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
-    "hof": "~22.8.4",
+    "hof": "~22.10.4",
     "snyk": "^1.1235.0",
     "typeahead-aria": "^1.0.4"
   },
@@ -33,8 +33,8 @@
     "@cucumber/pretty-formatter": "^2.1.0",
     "chai": "^5.3.1",
     "chai-as-promised": "^8.0.1",
-    "eslint": "^8.56.0",
-    "eslint-config-hof": "^1.3.1",
+    "eslint": "^8.57.0",
+    "eslint-config-hof": "^1.3.4",
     "lodash": "^4.17.21",
     "mocha": "^11.7.1",
     "nyc": "^17.1.0",
