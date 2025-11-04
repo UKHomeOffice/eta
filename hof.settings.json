@@ -7,6 +7,7 @@
   "behaviours": [
     "hof/components/session-timeout-warning"
   ],
+  "translations": "./apps/eta/translations",
   "views": ["./apps/eta/views"],
   "session": {
     "name": "eta.hof.sid",
