@@ -110,7 +110,6 @@ module.exports = {
       template: 'confirmation',
       backLink: false
     },
-    '/session-timeout': {},
     '/exit': {}
   }
 };
