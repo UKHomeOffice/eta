@@ -16,6 +16,8 @@ module.exports = {
     caseworker: process.env.CASEWORKER_EMAIL || 'sas-hof-test@digital.homeoffice.gov.uk'
   },
   hosts: {
-    acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
-  }
+    acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || 'http://localhost:' + (process.env.PORT || 8080)
+  },
+  hasGoogleAnalytics: true,
+  showCookiesBanner: true
 };
