@@ -4,7 +4,7 @@ on:
   repository_dispatch:
     types: [trigger-from-scanmaestro]
   pull_request:
-    branches: [main, master]
+    branches: [master]
 
 jobs:
   scan:
