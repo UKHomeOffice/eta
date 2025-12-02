@@ -17,7 +17,5 @@ module.exports = {
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || 'http://localhost:' + (process.env.PORT || 8080)
-  },
-  hasGoogleAnalytics: true,
-  showCookiesBanner: true
+  }
 };

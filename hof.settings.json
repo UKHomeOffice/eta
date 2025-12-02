@@ -13,5 +13,7 @@
     "name": "eta.hof.sid",
     "ttl": 1800
   },
-  "getAccessibility": false
+  "getAccessibility": false,
+  "hasGoogleAnalytics": true,
+  "showCookiesBanner": true
 }
