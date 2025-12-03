@@ -45,6 +45,7 @@ sonar_scanner: &sonar_scanner
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
+# https://collaboration.homeoffice.gov.uk/jira/browse/ETA-180
 # acceptance_tests: &acceptance_tests
 #   pull: if-not-exists
 #   image: mcr.microsoft.com/playwright:v1.48.2-focal-amd64
@@ -210,6 +211,7 @@ steps:
       - clone_repos
       - image_to_quay
 
+  # https://collaboration.homeoffice.gov.uk/jira/browse/ETA-180
   # - name: acceptance_tests_branch
   #   <<: *acceptance_tests
   #   commands:
@@ -242,6 +244,7 @@ steps:
       - clone_repos
       - image_to_quay
 
+  # https://collaboration.homeoffice.gov.uk/jira/browse/ETA-180
   # - name: acceptance_tests_uat
   #   <<: *acceptance_tests
   #   commands:
