@@ -45,9 +45,9 @@ sonar_scanner: &sonar_scanner
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
-# acceptance_tests: &acceptance_tests
-#   pull: if-not-exists
-#   image: mcr.microsoft.com/playwright:v1.12.3-focal
+acceptance_tests: &acceptance_tests
+  pull: if-not-exists
+  image: mcr.microsoft.com/playwright:v1.48.2-focal-amd64
 
 steps:
   - name: clone_repos
@@ -221,6 +221,8 @@ steps:
     when:
       branch: master
       event: pull_request
+    depends_on:
+      - deploy_to_branch
 
   # Deploy to master UAT environment
   - name: deploy_to_uat
@@ -249,6 +251,8 @@ steps:
     when:
       branch: master
       event: push
+    depends_on:
+      - deploy_to_uat
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
