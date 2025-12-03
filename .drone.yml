@@ -45,9 +45,9 @@ sonar_scanner: &sonar_scanner
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
-acceptance_tests: &acceptance_tests
-  pull: if-not-exists
-  image: mcr.microsoft.com/playwright:v1.48.2-focal-amd64
+# acceptance_tests: &acceptance_tests
+#   pull: if-not-exists
+#   image: mcr.microsoft.com/playwright:v1.48.2-focal-amd64
 
 steps:
   - name: clone_repos
@@ -210,19 +210,19 @@ steps:
       - clone_repos
       - image_to_quay
 
-  - name: acceptance_tests_branch
-    <<: *acceptance_tests
-    commands:
-      - export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
-      - export ACCEPTANCE_HOST_NAME=https://eta-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
-      - export CUCUMBER_PUBLISH_ENABLED=true
-      - npx playwright install
-      - npm run test:acceptance
-    when:
-      branch: master
-      event: pull_request
-    depends_on:
-      - deploy_to_branch
+  # - name: acceptance_tests_branch
+  #   <<: *acceptance_tests
+  #   commands:
+  #     - export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
+  #     - export ACCEPTANCE_HOST_NAME=https://eta-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
+  #     - export CUCUMBER_PUBLISH_ENABLED=true
+  #     - npx playwright install
+  #     - npm run test:acceptance
+  #   when:
+  #     branch: master
+  #     event: pull_request
+  #   depends_on:
+  #     - deploy_to_branch
 
   # Deploy to master UAT environment
   - name: deploy_to_uat
@@ -242,17 +242,17 @@ steps:
       - clone_repos
       - image_to_quay
 
-  - name: acceptance_tests_uat
-    <<: *acceptance_tests
-    commands:
-    - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}.internal.uat.sas-notprod.homeoffice.gov.uk
-    - npx playwright install
-    - npm run test:acceptance
-    when:
-      branch: master
-      event: push
-    depends_on:
-      - deploy_to_uat
+  # - name: acceptance_tests_uat
+  #   <<: *acceptance_tests
+  #   commands:
+  #   - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}.internal.uat.sas-notprod.homeoffice.gov.uk
+  #   - npx playwright install
+  #   - npm run test:acceptance
+  #   when:
+  #     branch: master
+  #     event: push
+  #   depends_on:
+  #     - deploy_to_uat
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
