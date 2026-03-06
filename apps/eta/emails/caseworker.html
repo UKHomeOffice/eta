@@ -3,22 +3,22 @@ Question submitted through the "Ask a question about ETA" form
 #Contact details
 
 Name:
-{{name}}{{name-not-applied}}
+{{ name or name_not_applied }}
 
 Email address:
-{{email}}{{email-not-submitted}}
+{{ email or email_not_submitted }}
 
 
 #What the question is about
-{{#data}}
-{{#table}}
-{{#value}}
-  * {{{value}}}
-{{/value}}
-{{/table}}
-{{/data}}
+{% for item in data %}
+{% for table_item in item.table %}
+{% if table_item.value %}
+* {{ table_item.value | safe }}
+{% endif %}
+{% endfor %}
+{% endfor %}
 
 #Details of the question
-{{your-question}}{{your-question-not-submitted}}
+{{ your_question or your_question_not_submitted }}
 
 

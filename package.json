@@ -23,7 +23,7 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
-    "hof": "~22.10.4",
+    "hof": "23.1.0-email-components-nunjucks-beta.2",
     "typeahead-aria": "^1.0.4"
   },
   "devDependencies": {

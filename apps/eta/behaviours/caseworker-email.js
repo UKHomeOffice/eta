@@ -73,7 +73,11 @@ module.exports = config => {
     template: path.resolve(__dirname, '../emails/caseworker.html'),
     parse: (model, translate) => {
       return Object.assign(model, {
-        data: getDataRows(model, translate)
+        data: getDataRows(model, translate),
+        your_question: model['your-question'],
+        your_question_not_submitted: model['your-question-not-submitted'],
+        name_not_applied: model['name-not-applied'],
+        email_not_submitted: model['email-not-submitted']
       });
     }
   }));
