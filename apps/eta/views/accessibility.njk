@@ -1,0 +1,44 @@
+{% extends "layout.njk" %}
+{% block content %}
+  {% if header %}<h1 class="govuk-heading-l">{{ header }}</h1>{% endif %}
+  <ul class="govuk-list govuk-list--bullet">
+        <li>{{ t('pages.accessibility.intro-p2-li1') }}</li>
+        <li>{{ t('pages.accessibility.intro-p2-li2') }}</li>
+        <li>{{ t('pages.accessibility.intro-p2-li3') }}</li>
+        <li>{{ t('pages.accessibility.intro-p2-li4') }}</li>
+        <li>{{ t('pages.accessibility.intro-p2-li5') }}</li>
+    </ul>
+    <p class="govuk-body">{{ t('pages.accessibility.intro-p3-pre-link') }} <a href="https://mcmw.abilitynet.org.uk/">{{ t('pages.accessibility.intro-p3-link') }}</a> {{ t('pages.accessibility.intro-p3-post-link') }}</p>
+    <h2 class="govuk-heading-m">{{ t('pages.accessibility.reporting-header') }}</h2>
+    <p class="govuk-body">{{ t('pages.accessibility.reporting-p1') }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ t('pages.accessibility.reporting-p1-li1-pre-link') }} <a href="mailto:{{ t('pages.accessibility.contact-email-accessibility') }}">{{ t('pages.accessibility.contact-email-accessibility') }}</a></li>
+    </ul>
+    <p class="govuk-body">
+        <a href="http://www.w3.org/WAI/users/inaccessible">{{ t('pages.accessibility.reporting-p2-link') }}</a>
+    </p>
+    <h2 class="govuk-heading-m">{{ t('pages.accessibility.enforcement-header') }}</h2>
+    <p class="govuk-body">{{ t('pages.accessibility.enforcement-p1-pre-link') }} <a href ="https://www.equalityadvisoryservice.com/">{{ t('pages.accessibility.enforcement-p1-link') }}</a></p>
+    <p class="govuk-body">{{ t('pages.accessibility.enforcement-p2') }}</p>
+    <h2 class="govuk-heading-m">{{ t('pages.accessibility.technical-info-header') }}</h2>
+    <p class="govuk-body">{{ t('pages.accessibility.technical-info-p1') }}</p>
+    <h2 class="govuk-heading-m">{{ t('pages.accessibility.compliance-header') }}</h2>
+    <p class="govuk-body">{{ t('pages.accessibility.compliance-p1') }}</p>
+    <h2 class="govuk-heading-m">{{ t('pages.accessibility.non-accessible-header') }}</h2>
+    <p class="govuk-body">{{ t('pages.accessibility.non-accessible-p1') }}</p>
+    <h3 class="govuk-heading-m">{{ t('pages.accessibility.non-compliance-header') }}</h3>
+    <p class="govuk-body">{{ t('pages.accessibility.how-accessible-p1') }}</p>
+    <ol class="govuk-list govuk-list--number">
+        <li>{{ t('pages.accessibility.how-accessible-p1-li1') }}<br><br><p>{{ t('pages.accessibility.how-accessible-p1-li1-p1') }}</p><p>{{ t('pages.accessibility.how-accessible-p1-li1-p2') }}</p><br></li>
+        <li>{{ t('pages.accessibility.how-accessible-p1-li2') }}</li>
+        <li>{{ t('pages.accessibility.how-accessible-p1-li3') }}</li>
+    </ol>
+    <h3 class="govuk-heading-m">{{ t('pages.accessibility.disproportionate-burden-header') }}</h3>
+    <p class="govuk-body">{{ t('pages.accessibility.disproportionate-burden-p1') }}</p>
+    <h3 class="govuk-heading-m">{{ t('pages.accessibility.outside-scope-header') }}</h3>
+    <p class="govuk-body">{{ t('pages.accessibility.outside-scope-p1') }}</p>
+    <h2 class="govuk-heading-m">{{ t('pages.accessibility.preparation-header') }}</h2>
+    <p class="govuk-body">{{ t('pages.accessibility.preparation-p1') }}</p>
+    <p class="govuk-body">{{ t('pages.accessibility.preparation-p2') }}</p>
+    <p class="govuk-body">{{ t('pages.accessibility.preparation-p3') }}</p>
+{% endblock %}

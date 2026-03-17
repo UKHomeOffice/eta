@@ -1,0 +1,13 @@
+{% extends "partials/page.njk" %}
+{% block pageContent %}
+  {% for field in fields %}
+    {{ renderField(field) }}
+  {% endfor %}
+
+  <strong class="govuk-body govuk-!-font-weight-bold">Or look for help on GOV.UK</strong>
+  <br>
+  <p class="govuk-body">Check the <a href="https://www.gov.uk/guidance/electronic-travel-authorisation-eta">ETA guidance on GOV.UK </a> for an answer to your question.</p>
+  <p class="govuk-body">If you are using the UK ETA app, <a  href="https://apply-for-an-eta.homeoffice.gov.uk/how-to-apply">try applying online instead.</a></p>
+  <br>
+  {{ inputSubmit("continue") }}
+{% endblock %}

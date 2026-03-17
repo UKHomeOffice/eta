@@ -1,9 +1,5 @@
 @import "hof/frontend/themes/gov-uk/styles/govuk";
 
-.phase-banner {
-  @include phase-banner(beta);
-}
-
 .tt-menu {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -29,13 +25,20 @@
 }
 
 ul {
-  @extend .text;
-  @extend .list;
-  @extend .list-bullet;
+  @extend .govuk-list;
+  @extend .govuk-list--bullet;
 }
 
 a {
   @extend .govuk-link;
+}
+
+p {
+  @extend .govuk-body;
+}
+
+h2 {
+  @extend .govuk-heading-m;
 }
 
 header {

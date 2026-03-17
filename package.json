@@ -6,7 +6,7 @@
   "author": "",
   "description": "",
   "engines": {
-    "node": ">=18.12.1 <21.0.0"
+    "node": ">=20.19.0 <21.0.0"
   },
   "license": "MIT",
   "scripts": {
@@ -23,7 +23,7 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
-    "hof": "~22.10.4",
+    "hof": "24.0.0-nunjucks-refactoring-main-beta.15",
     "typeahead-aria": "^1.0.4"
   },
   "devDependencies": {
