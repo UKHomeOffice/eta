@@ -1,15 +1,9 @@
-<title>{{#t}}Question sent - Ask a question about ETA{{/t}} – GOV.UK</title>
-{{<partials-page}}
-  {{$page-content}}
-  {{>partials-confirmation-alert}}
-
+    
   <p>We have sent you a confirmation email</p>
 
-	<h2>What happens next?</h2>
+  <h2>What happens next?</h2>
 	<p>We have sent your enquiry to the help team. </p>
   <p>We will reply within 3 working days (Monday-Friday).</p>
 	<p>We will ask you for more information if we need it.</p>
 
   <p>To help us improve the ETA application process, please provide your <a href="https://homeoffice.eu.qualtrics.com/jfe/form/SV_dmzhkWRLMQmIoES">feedback.</a></p>
-  {{/page-content}}
-{{/partials-page}}

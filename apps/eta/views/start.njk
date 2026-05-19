@@ -1,0 +1,23 @@
+{% extends "partials/page.njk" %}
+{% block pageContent %}
+  <p class="govuk-body">Use this form to ask a question about Electronic Travel Authorisation (ETA). We will reply in 3 working days (Monday-Friday).</p>
+  <p class="govuk-body">We do not give help on the phone.</p>
+
+  <h2 class="govuk-heading-m">Before you start</h2>
+  <p class="govuk-body">Check the <a href="https://www.gov.uk/guidance/electronic-travel-authorisation-eta">ETA guidance on GOV.UK</a> for an answer to your question.</p>
+    <p>If you are using the UK ETA app, <a  href="https://apply-for-an-eta.homeoffice.gov.uk/how-to-apply">try applying online instead.</a></p>
+  <p class="govuk-body">If you are waiting for a decision on an ETA application, do not contact us until 3 working days (Monday-Friday) after you applied.</p>
+
+  <p class="govuk-body"><strong>If you need to travel soon</strong></p>
+  <p class="govuk-body">You must apply for an ETA before you travel to the UK. You can travel to the UK while waiting for a decision.</p>
+
+  <h2 class="govuk-heading-m">What you'll need</h2>
+  <p class="govuk-body">You will need:</p>
+  <ul class="govuk-list govuk-list--bullet">
+      <li>an email address where we can send our reply</li>
+      <li>your ETA reference number, if you have already applied</li>
+  </ul>
+  <p class="govuk-body">If you do not do anything for 20 minutes, your answers will not be saved. Your question is only saved when you submit the form.</p>
+
+  {{ inputSubmit("continue") }}
+{% endblock %}

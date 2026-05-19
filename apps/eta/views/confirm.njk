@@ -1,0 +1,11 @@
+{% extends "partials/page.njk" %}
+
+{% from "partials/summary-table.njk" import summaryTableComponent %}
+
+{% block pageContent %}
+  {% for row in rows %}
+    {{ summaryTableComponent(row, t, baseUrl) }}
+  {% endfor %}
+  <p class="govuk-body">{{ warning }}</p>
+  {{ inputSubmit("confirm") }}
+{% endblock %}

@@ -138,5 +138,8 @@
         "label": "ETA reference number"
       }
     }
+  },
+  "confirmation": {
+    "header": "Question sent"
   }
 }

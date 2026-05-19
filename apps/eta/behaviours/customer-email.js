@@ -23,10 +23,14 @@ module.exports = config => {
   return Notify(Object.assign({}, config, {
     recipient: model => model.email || model['email-not-submitted'],
     subject: (model, translate) => translate('pages.email.subject'),
-    template: path.resolve(__dirname, '../emails/customer.html'),
+    template: path.resolve(__dirname, '../emails/customer.njk'),
     parse: (model, translate) => {
       return Object.assign(model, {
-        data: getDataRows(model, translate)
+        data: getDataRows(model, translate),
+        your_question: model['your-question'],
+        your_question_not_submitted: model['your-question-not-submitted'],
+        name_not_applied: model['name-not-applied'],
+        email_not_submitted: model['email-not-submitted']
       });
     }
   }));

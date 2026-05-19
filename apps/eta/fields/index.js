@@ -2,7 +2,7 @@
 
 module.exports = {
   'application-submitted': {
-    mixin: 'radio-group',
+    mixin: 'radioGroup',
     options: ['Yes', 'No'],
     validate: 'required',
     legend: {
@@ -11,7 +11,7 @@ module.exports = {
   },
   'what-is-your-question-about': {
     isPageHeading: false,
-    mixin: 'radio-group',
+    mixin: 'radioGroup',
     validate: ['required'],
     legend: {
       className: 'visuallyhidden'
@@ -25,7 +25,7 @@ module.exports = {
   },
   'what-is-your-question-about-not-submitted': {
     isPageHeading: false,
-    mixin: 'radio-group',
+    mixin: 'radioGroup',
     validate: ['required'],
     legend: {
       className: 'visuallyhidden'
@@ -37,7 +37,7 @@ module.exports = {
     ]
   },
   'application-method': {
-    mixin: 'radio-group',
+    mixin: 'radioGroup',
     validate: ['required'],
     legend: {
       className: 'visuallyhidden'
@@ -49,7 +49,7 @@ module.exports = {
     ]
   },
   'applying-method': {
-    mixin: 'radio-group',
+    mixin: 'radioGroup',
     validate: ['required'],
     legend: {
       className: 'visuallyhidden'
@@ -108,7 +108,7 @@ module.exports = {
       { type: 'maxlength', arguments: 9 }]
   },
   'question-app-option': {
-    mixin: 'radio-group',
+    mixin: 'radioGroup',
     validate: ['required'],
     legend: {
       className: 'visuallyhidden'
@@ -123,7 +123,7 @@ module.exports = {
     ]
   },
   'question-online-option': {
-    mixin: 'radio-group',
+    mixin: 'radioGroup',
     validate: ['required'],
     legend: {
       className: 'visuallyhidden'

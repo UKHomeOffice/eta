@@ -137,7 +137,7 @@
     }
   },
   "eta-reference-number": {
-    "label": "ETA reference number {{#optional}} (optional) {{/optional}}",
+    "label": "ETA reference number {% if optional %} (optional) {% endif %}",
     "hint": "For example, 2021-1111-1111-1111. We need your ETA reference number to give specific information about your ETA."
   },
   "passport-number": {

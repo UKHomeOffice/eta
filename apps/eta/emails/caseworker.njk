@@ -1,0 +1,24 @@
+Question submitted through the "Ask a question about ETA" form
+
+#Contact details
+
+Name:
+{{ name or name_not_applied }}
+
+Email address:
+{{ email or email_not_submitted }}
+
+
+#What the question is about
+{% for item in data %}
+{% for table_item in item.table %}
+{% if table_item.value %}
+  * {{ table_item.value | safe }}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+#Details of the question
+{{ your_question or your_question_not_submitted }}
+
+
