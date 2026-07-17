@@ -3,7 +3,7 @@ Electronic Travel Authorisation (ETA) Application built using HOF (Home Office F
 
 ## Getting Started
 
-### Prerequisities
+### Prerequisites
 
 - [Node.js](https://nodejs.org/en/) - Tested against LTS
 - NPM (installed with Node.js) - Works with versions 2 and 3
