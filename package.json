@@ -19,6 +19,11 @@
     "test:acceptance_browser": "ACCEPTANCE_WITH_BROWSER=true TAGS=\"${TAGS:=@feature}\" yarn run test:cucumber",
     "test:cucumber": "cucumber-js -f @cucumber/pretty-formatter \"test/_features/**/*.feature\" --require test/_features/test.setup.js --require \"test/_features/step_definitions/**/*.js\" --tags $TAGS",
     "test:cucumber-name": "cucumber-js -f @cucumber/pretty-formatter \"test/_features/**/*.feature\" --require test/_features/test.setup.js --require \"test/_features/step_definitions/**/*.js\" --name $NAME",
+    "bddgen": "bddgen",
+    "test:e2e": "bddgen && playwright test",
+    "test:e2e:headed": "bddgen && playwright test --headed",
+    "test:e2e:debug": "bddgen && playwright test --debug",
+    "test:e2e:report": "playwright show-report",
     "build": "hof-build",
     "postinstall": "yarn run build"
   },
@@ -28,14 +33,18 @@
   "devDependencies": {
     "@cucumber/cucumber": "^13.1.0",
     "@cucumber/pretty-formatter": "^4.0.0",
+    "@playwright/test": "1.61.1",
+    "@types/node": "^25.9.2",
     "chai": "^6.2.2",
     "chai-as-promised": "^8.0.2",
+    "dotenv": "^17.4.2",
     "eslint": "^8.57.0",
     "eslint-config-hof": "^1.3.4",
     "lodash": "^4.18.1",
     "mocha": "^11.7.6",
     "nyc": "^18.0.0",
-    "playwright": "^1.61.1"
+    "playwright": "1.61.1",
+    "playwright-bdd": "^9.0.0"
   },
   "mocha": {
     "require": "test/setup.js"
