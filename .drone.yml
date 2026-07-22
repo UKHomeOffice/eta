@@ -261,7 +261,7 @@ steps:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
       branch:
-        <<: *include_default_branch
+        <<: *include_default_and_feature_branches
       event: pull_request
     depends_on:
       - clone_repos
@@ -285,7 +285,7 @@ steps:
       - CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e
     when:
       branch:
-        <<: *include_default_branch
+        <<: *include_default_and_feature_branches
       event: pull_request
     depends_on:
       - deploy_to_branch
