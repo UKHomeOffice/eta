@@ -269,7 +269,11 @@ steps:
 
   - name: e2e_tests
     pull: if-not-exists
-    image: mcp/playwright:latest
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
+    resources:
+      limits:
+        cpu: 1000
+        memory: 1024Mi
     volumes:
       - name: dockersock
         path: /root/.dockersock
