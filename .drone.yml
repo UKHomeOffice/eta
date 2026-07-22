@@ -269,7 +269,7 @@ steps:
 
   - name: e2e_tests
     pull: if-not-exists
-    image: mcr.microsoft.com/playwright:v1.61.1-noble
+    image: mcp/playwright:latest
     volumes:
       - name: dockersock
         path: /root/.dockersock
