@@ -231,7 +231,7 @@ steps:
         cpu: 1000
         memory: 1024Mi
     environment:
-      IMAGE_NAME: $${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
+      IMAGE_NAME: eta:$${DRONE_COMMIT_SHA}
       SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: false
@@ -239,8 +239,6 @@ steps:
     volumes:
       - name: dockersock
         path: /root/.dockersock
-      - name: dockersock
-        path: /var/run
     when:
       event: [push, pull_request]
     depends_on:
