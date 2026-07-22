@@ -19,22 +19,32 @@ environment:
   NOTIFY_STUB: stub
   NIGHTLY_E2E_BASE_URL: eta.internal.uat.sas-notprod.homeoffice.gov.uk
 
-trigger:
-  branch:
-    - feature/*
+include_default_branch: &include_default_branch
+  include:
     - master
 
-linting: &linting
+include_default_and_feature_branches: &include_default_and_feature_branches
+  include:
+    - master
+    - feature/*
+
+trigger:
+  branch:
+    <<: *include_default_and_feature_branches
+
+node_image: &node_image
   pull: if-not-exists
   image: node:24.18.0-alpine3.24@sha256:4ba75f835bb8802193e4c114572113d4b26f95f6f094f4b5229d2a77773e0afc
+
+linting: &linting
+  <<: *node_image
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
     - yarn run test:lint
 
 unit_tests: &unit_tests
-  pull: if-not-exists
-  image: node:24.18.0-alpine3.24@sha256:4ba75f835bb8802193e4c114572113d4b26f95f6f094f4b5229d2a77773e0afc
+  <<: *node_image
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
@@ -101,9 +111,7 @@ steps:
       OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone.txt
     when:
       branch:
-        include:
-        - master
-        - feature/*
+        <<: *include_default_and_feature_branches
       event: [push, pull_request]
 
   - name: clone_repos
@@ -114,9 +122,7 @@ steps:
       CLONE_REPOS_PRUNE: "true"
     when:
       branch:
-        include:
-        - master
-        - feature/*
+        <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
       - generate_github_app_token_for_clone
@@ -125,14 +131,11 @@ steps:
     <<: *sonar_scanner
     when:
       branch:
-        include:
-          - master
-          - feature/*
+        <<: *include_default_and_feature_branches
       event: [push, pull_request]
 
   - name: setup
-    pull: if-not-exists
-    image: node:24.18.0-alpine3.24@sha256:4ba75f835bb8802193e4c114572113d4b26f95f6f094f4b5229d2a77773e0afc
+    <<: *node_image
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
@@ -140,18 +143,14 @@ steps:
       - yarn run postinstall
     when:
       branch:
-        include:
-          - master
-          - feature/*
+        <<: *include_default_and_feature_branches
       event: [push, pull_request]
 
   - name: linting
     <<: *linting
     when:
       branch:
-        include:
-          - master
-          - feature/*
+        <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
       - setup
@@ -160,9 +159,7 @@ steps:
     <<: *unit_tests
     when:
       branch:
-        include:
-        - master
-        - feature/*
+        <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
       - setup
@@ -177,7 +174,8 @@ steps:
       - name: dockersock
         path: /var/run
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: [push, pull_request]
     depends_on:
       - linting
@@ -200,7 +198,7 @@ steps:
       ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     volumes:
       - name: dockersock
-        path: /root/.dockersock
+        path: /var/run
     when:
       event: [push, pull_request]
     depends_on:
@@ -217,7 +215,8 @@ steps:
     - docker tag $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     - docker push $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: [push, pull_request]
     depends_on:
       - build_image
@@ -231,14 +230,14 @@ steps:
         cpu: 1000
         memory: 1024Mi
     environment:
-      IMAGE_NAME: eta:$${DRONE_COMMIT_SHA}
+      IMAGE_NAME: eta:${DRONE_COMMIT_SHA}
       SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: false
       ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     volumes:
       - name: dockersock
-        path: /root/.dockersock
+        path: /var/run
     when:
       event: [push, pull_request]
     depends_on:
@@ -261,7 +260,8 @@ steps:
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: pull_request
     depends_on:
       - clone_repos
@@ -280,7 +280,8 @@ steps:
       - echo "Running Playwright e2e against https://$(cat /root/.dockersock/branch_url.txt)"
       - CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: pull_request
     depends_on:
       - deploy_to_branch
@@ -291,7 +292,8 @@ steps:
       <<: *github_app_token_secrets_ukho
       OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token.txt
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: pull_request
     depends_on:
       - e2e_tests
@@ -312,7 +314,8 @@ steps:
       - bash bin/publish_e2e_test_report.sh
       - rm -f /root/.dockersock/github_app_token.txt
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: pull_request
     depends_on:
       - generate_github_app_token
@@ -327,7 +330,8 @@ steps:
   #     - npx playwright install
   #     - npm run test:acceptance
   #   when:
-  #     branch: master
+  #     branch:
+  #       <<: *include_default_branch
   #     event: pull_request
   #   depends_on:
   #     - deploy_to_branch
@@ -344,7 +348,8 @@ steps:
     commands:
       - bin/deploy.sh $${UAT_ENV}
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: push
     depends_on:
       - clone_repos
@@ -358,7 +363,8 @@ steps:
   #   - npx playwright install
   #   - npm run test:acceptance
   #   when:
-  #     branch: master
+  #     branch:
+  #       <<: *include_default_branch
   #     event: push
   #   depends_on:
   #     - deploy_to_uat
@@ -378,7 +384,8 @@ steps:
     commands:
       - drone build info $GIT_REPO $DRONE_BUILD_NUMBER --format {{.Message}} | grep -o '[^ ]\+$' -m1 | sed 's|UKHomeOffice/||g' | tr '[:upper:]' '[:lower:]' | tr '/' '-' > /root/.dockersock/branch_name.txt
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: push
 
   # Tear down pull request UAT environment
@@ -396,7 +403,8 @@ steps:
     commands:
       - bin/deploy.sh tear_down
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: push
     depends_on:
       - get_pr_branch
@@ -414,7 +422,8 @@ steps:
   #   commands:
   #     - bin/deploy.sh $${STG_ENV}
   #   when:
-  #     branch: master
+  #     branch:
+  #       <<: *include_default_branch
   #     event: push
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
