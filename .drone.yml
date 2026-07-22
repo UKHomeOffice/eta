@@ -269,12 +269,15 @@ steps:
 
   - name: e2e_tests
     pull: if-not-exists
-    image: mcr.microsoft.com/playwright:latest
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
     volumes:
       - name: dockersock
         path: /root/.dockersock
     commands:
-      - node -v && yarn -v
+      - npm install -g n
+      - n 24.18.0
+      - hash -r
+      - node --version
       - yarn install --frozen-lockfile
       - yarn playwright install --with-deps
       - test -s /root/.dockersock/branch_url.txt || (echo "Missing deployed branch URL at /root/.dockersock/branch_url.txt" && exit 1)
@@ -617,12 +620,15 @@ steps:
 
   - name: cron_nightly_e2e_tests
     pull: if-not-exists
-    image: mcr.microsoft.com/playwright:latest
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
     volumes:
       - name: dockersock
         path: /root/.dockersock
     commands:
-      - node -v && yarn -v
+      - npm install -g n
+      - n 24.18.0
+      - hash -r
+      - node --version
       - yarn install --frozen-lockfile
       - yarn playwright install --with-deps
       - |
