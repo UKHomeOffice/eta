@@ -1,4 +1,4 @@
-@import "hof/frontend/themes/gov-uk/styles/govuk";
+@import "hof/frontend/themes/gov-uk/styles/govuk.scss";
 
 .phase-banner {
   @include phase-banner(beta);

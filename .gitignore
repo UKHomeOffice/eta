@@ -10,3 +10,6 @@ test/executions
 test/coverage
 .nyc_output
 coverage
+.features-gen
+playwright-report
+test-results
