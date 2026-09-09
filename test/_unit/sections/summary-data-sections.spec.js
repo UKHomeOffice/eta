@@ -6,7 +6,7 @@ describe('Apply Summary Data Sections', () => {
     it('should have sections and page translations that correlate', () => {
       const sectionsKeys = Object.keys(sections).sort();
       const pagesSectionsKeys = Object.keys(pages.confirm.sections).sort();
-      sectionsKeys.should.deep.equal(pagesSectionsKeys);
+      expect(sectionsKeys).toEqual(pagesSectionsKeys);
     });
   });
 });
